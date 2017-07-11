@@ -28,6 +28,6 @@ export default class MyFood implements IParser {
 	}
 
 	private normalizePrice(price: string): string {
-		return price.replace("Kč", ",-");
+		return price.replace(" Kč", ",-");
 	}
 }
