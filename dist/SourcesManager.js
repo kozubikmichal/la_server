@@ -8,17 +8,17 @@ var MyFood_1 = require("./parsers/MyFood");
 var SourcesManager = (function () {
     function SourcesManager() {
         this.sources = [{
-                name: "IQ Holanská",
+                name: "IQ Holandská",
                 url: "http://iqrestaurant.cz/brno/menu.html",
                 menuUrl: "http://iqrestaurant.cz/brno/getData.svc?type=brnoMenuHTML2",
                 parser: new IQ_1.default()
             }, {
-                name: "IQ Holanská (Týdenní nabídka)",
+                name: "IQ Holandská (Týdenní nabídka)",
                 url: "http://iqrestaurant.cz/brno/menu.html",
                 menuUrl: "http://iqrestaurant.cz/brno/getData.svc?type=brnoMenuHTML2",
                 parser: new IQ_1.default(true)
             }, {
-                name: "My Food Holandská",
+                name: "MyFood Holandská",
                 url: "https://www.sklizeno.cz/o-nas/brno-holandska/",
                 menuUrl: "http://www.sklizeno.cz/o-nas/brno-holandska/",
                 parser: new MyFood_1.default()

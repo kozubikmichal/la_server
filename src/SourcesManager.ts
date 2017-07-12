@@ -8,17 +8,17 @@ import MyFood from "./parsers/MyFood";
 
 export default class SourcesManager {
 	private sources: ISource[] = [{
-		name: "IQ Holanská",
+		name: "IQ Holandská",
 		url: "http://iqrestaurant.cz/brno/menu.html",
 		menuUrl: "http://iqrestaurant.cz/brno/getData.svc?type=brnoMenuHTML2",
 		parser: new IQ()
 	}, {
-		name: "IQ Holanská (Týdenní nabídka)",
+		name: "IQ Holandská (Týdenní nabídka)",
 		url: "http://iqrestaurant.cz/brno/menu.html",
 		menuUrl: "http://iqrestaurant.cz/brno/getData.svc?type=brnoMenuHTML2",
 		parser: new IQ(true)
 	}, {
-		name: "My Food Holandská",
+		name: "MyFood Holandská",
 		url: "https://www.sklizeno.cz/o-nas/brno-holandska/",
 		menuUrl: "http://www.sklizeno.cz/o-nas/brno-holandska/",
 		parser: new MyFood()

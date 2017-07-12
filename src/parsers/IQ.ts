@@ -11,9 +11,9 @@ export default class IQ implements IParser {
 		let itemIndex = this.isWeek ? ((day - 1) * 2 + 1) : ((day - 1) * 2);
 		let data = days.item(itemIndex);
 
-		return [{
+		return Promise.resolve([{
 			meals: this.processMenuList(data)
-		}];
+		}]);
 	}
 
 	private processMenuList(list: Element): IMeal[] {
@@ -35,3 +35,5 @@ export default class IQ implements IParser {
 		return price.replace(/\(.*\)/, "").trim();
 	}
 }
+
+declare var Promise: any;

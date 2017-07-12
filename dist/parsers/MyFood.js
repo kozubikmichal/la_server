@@ -6,9 +6,9 @@ var MyFood = (function () {
     MyFood.prototype.parseDay = function (dom, day) {
         var soupIndex = (day - 1) * 2;
         var allData = dom.window.document.querySelectorAll("div.item");
-        return [{
+        return Promise.resolve([{
                 meals: this.processMenuList(allData.item(soupIndex)).concat(this.processMenuList(allData.item(soupIndex + 1)))
-            }];
+            }]);
     };
     MyFood.prototype.processMenuList = function (list) {
         var meals = [];

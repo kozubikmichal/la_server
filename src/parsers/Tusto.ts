@@ -8,9 +8,9 @@ export default class Tusto implements IParser {
 		let menu = dom.window.document.querySelectorAll(`table.menu`).item(day - 1);
 		let dayData = menu.children.item(0);
 
-		return [{
+		return Promise.resolve([{
 			meals: this.processMenuList(dayData)
-		}];
+		}]);
 	}
 
 	private processMenuList(list: Element): IMeal[] {
@@ -33,3 +33,5 @@ export default class Tusto implements IParser {
 		return price.replace("Kč", "").trim()
 	}
 }
+
+declare var Promise: any;

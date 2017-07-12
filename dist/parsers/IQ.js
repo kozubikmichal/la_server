@@ -9,9 +9,9 @@ var IQ = (function () {
         var days = dom.window.document.querySelectorAll("dl.menuDayItems");
         var itemIndex = this.isWeek ? ((day - 1) * 2 + 1) : ((day - 1) * 2);
         var data = days.item(itemIndex);
-        return [{
+        return Promise.resolve([{
                 meals: this.processMenuList(data)
-            }];
+            }]);
     };
     IQ.prototype.processMenuList = function (list) {
         var meals = [];

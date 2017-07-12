@@ -5,9 +5,9 @@ var Kometa = (function () {
     }
     Kometa.prototype.parseDay = function (dom, day) {
         var dayData = dom.window.document.querySelectorAll("div#div" + day + " tr");
-        return [{
+        return Promise.resolve([{
                 meals: this.processMenuList(dayData)
-            }];
+            }]);
     };
     Kometa.prototype.processMenuList = function (list) {
         var meals = [];

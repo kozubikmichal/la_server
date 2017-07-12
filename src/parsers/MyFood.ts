@@ -8,11 +8,11 @@ export default class MyFood implements IParser {
 		let soupIndex = (day - 1) * 2;
 		let allData = dom.window.document.querySelectorAll(`div.item`);
 
-		return [{
+		return Promise.resolve([{
 			meals: this.processMenuList(allData.item(soupIndex)).concat(
 				this.processMenuList(allData.item(soupIndex + 1))
 			)
-		}];
+		}]);
 	}
 
 	private processMenuList(list: Element): IMeal[] {
@@ -31,3 +31,5 @@ export default class MyFood implements IParser {
 		return price.replace(" Kč", ",-");
 	}
 }
+
+declare var Promise: any;

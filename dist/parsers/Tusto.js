@@ -6,9 +6,9 @@ var Tusto = (function () {
     Tusto.prototype.parseDay = function (dom, day) {
         var menu = dom.window.document.querySelectorAll("table.menu").item(day - 1);
         var dayData = menu.children.item(0);
-        return [{
+        return Promise.resolve([{
                 meals: this.processMenuList(dayData)
-            }];
+            }]);
     };
     Tusto.prototype.processMenuList = function (list) {
         var meals = [];

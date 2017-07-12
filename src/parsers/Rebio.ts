@@ -11,9 +11,9 @@ export default class Rebio implements IParser {
 		let id = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
 		let dayHeader = dom.window.document.querySelector(`h3[id='${id}']`);
 
-		return [{
+		return Promise.resolve([{
 			meals: this.getMeals(dayHeader)
-		}];
+		}]);
 	}
 
 	private getMeals(dayHeader: Element): IMeal[] {
@@ -32,3 +32,5 @@ export default class Rebio implements IParser {
 		return meals;
 	}
 }
+
+declare var Promise: any;

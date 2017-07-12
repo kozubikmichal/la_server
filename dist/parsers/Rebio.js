@@ -8,9 +8,9 @@ var Rebio = (function () {
         date.setDate(date.getDate() + (day - date.getDay()));
         var id = date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear();
         var dayHeader = dom.window.document.querySelector("h3[id='" + id + "']");
-        return [{
+        return Promise.resolve([{
                 meals: this.getMeals(dayHeader)
-            }];
+            }]);
     };
     Rebio.prototype.getMeals = function (dayHeader) {
         return dayHeader ? this.processMenuList(dayHeader.nextElementSibling) : [];

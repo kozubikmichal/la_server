@@ -7,9 +7,9 @@ export default class Kometa implements IParser {
 	public parseDay(dom: jsdom.JSDOM, day: number) {
 		let dayData = dom.window.document.querySelectorAll(`div#div${day} tr`);
 
-		return [{
+		return Promise.resolve([{
 			meals: this.processMenuList(dayData)
-		}];
+		}]);
 	}
 
 	private processMenuList(list: NodeListOf<Element>): IMeal[] {
@@ -28,3 +28,5 @@ export default class Kometa implements IParser {
 		return name.trim();
 	}
 }
+
+declare var Promise: any;
