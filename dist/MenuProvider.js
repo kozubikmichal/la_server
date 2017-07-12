@@ -13,10 +13,7 @@ var MenuProvider = (function () {
         return Promise.all(this.sourcesManager.getSources().map(function (source) {
             return _this.getMenuToday(source.menuUrl, source.parser).then(function (menus) {
                 return {
-                    restaurant: {
-                        name: source.name,
-                        url: source.url
-                    },
+                    restaurant: source.restaurant,
                     menus: menus
                 };
             });

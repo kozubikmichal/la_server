@@ -18,10 +18,7 @@ export default class MenuProvider {
 			this.sourcesManager.getSources().map((source) => {
 				return this.getMenuToday(source.menuUrl, source.parser).then(menus => {
 					return {
-						restaurant: {
-							name: source.name,
-							url: source.url
-						},
+						restaurant: source.restaurant,
 						menus: menus
 					}
 				})

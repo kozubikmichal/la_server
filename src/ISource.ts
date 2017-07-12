@@ -1,8 +1,8 @@
 import IParser from "./parsers/IParser";
+import { IRestaurant } from "./IMenu";
 
 interface ISource {
-	name: string;
-	url: string;
+	restaurant: IRestaurant;
 	menuUrl: string;
 	parser: IParser
 }

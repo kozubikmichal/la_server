@@ -9,6 +9,7 @@ export interface IMenuSection {
 }
 
 export interface IRestaurant {
+	id: string;
 	name: string;
 	url: string;
 }
