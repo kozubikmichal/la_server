@@ -3,6 +3,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var express = require("express");
 var MenuProvider_1 = require("./MenuProvider");
 var apicache = require("apicache");
+var path = require("path");
 var CACHE_DURATION = "30 minutes";
 var API_ROOT = "/api";
 var ROUTES = {
@@ -16,6 +17,7 @@ var Server = (function () {
         this.router = express.Router();
         this.useCache();
         this.useRouter();
+        this.registerClient();
         this.registerRoutes();
     }
     Server.prototype.start = function (port) {
@@ -42,6 +44,13 @@ var Server = (function () {
     };
     Server.prototype.useRouter = function () {
         this.app.use(API_ROOT, this.router);
+    };
+    Server.prototype.registerClient = function () {
+        this.app.use(express.static(__dirname + '/../client'));
+        this.app.get("/", function (req, res) {
+            var file = path.join(__dirname, "/../client/public/index.html");
+            res.sendFile(file);
+        });
     };
     return Server;
 }());
