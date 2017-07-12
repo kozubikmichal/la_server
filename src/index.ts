@@ -2,7 +2,7 @@ import Server from "./Server";
 
 import Request from "./Request";
 
-let port = 3002;
+let port = Number(process.env.PORT) || 3333;
 
 console.log("start");
 
