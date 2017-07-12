@@ -1,17 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var IQ = (function () {
-    function IQ() {
+    function IQ(isWeek) {
+        if (isWeek === void 0) { isWeek = false; }
+        this.isWeek = isWeek;
     }
     IQ.prototype.parseDay = function (dom, day) {
         var days = dom.window.document.querySelectorAll("dl.menuDayItems");
-        var dayData = days.item(day * 2 - 1);
-        var weekData = days.item(day * 2);
+        var itemIndex = this.isWeek ? ((day - 1) * 2 + 1) : ((day - 1) * 2);
+        var data = days.item(itemIndex);
         return [{
-                meals: this.processMenuList(dayData)
-            }, {
-                name: "Týdenní nabídka",
-                meals: this.processMenuList(weekData)
+                meals: this.processMenuList(data)
             }];
     };
     IQ.prototype.processMenuList = function (list) {

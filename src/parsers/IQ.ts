@@ -4,16 +4,15 @@ import { IMeal } from "../IMenu";
 import * as jsdom from "jsdom";
 
 export default class IQ implements IParser {
+	constructor(private isWeek: boolean = false) { }
+
 	public parseDay(dom: jsdom.JSDOM, day: number) {
 		let days = dom.window.document.querySelectorAll("dl.menuDayItems");
-		let dayData = days.item(day * 2 - 1);
-		let weekData = days.item(day * 2);
+		let itemIndex = this.isWeek ? ((day - 1) * 2 + 1) : ((day - 1) * 2);
+		let data = days.item(itemIndex);
 
 		return [{
-			meals: this.processMenuList(dayData)
-		}, {
-			name: "Týdenní nabídka",
-			meals: this.processMenuList(weekData)
+			meals: this.processMenuList(data)
 		}];
 	}
 
