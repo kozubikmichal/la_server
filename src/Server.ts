@@ -26,7 +26,7 @@ export default class Server {
 	constructor() {
 		this.useCache();
 		this.useRouter();
-		//		this.registerClient();
+		this.registerClient();
 		this.registerRoutes();
 	}
 

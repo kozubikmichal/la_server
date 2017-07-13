@@ -21,7 +21,7 @@ var Server = (function () {
         this.router = express.Router();
         this.useCache();
         this.useRouter();
-        //		this.registerClient();
+        this.registerClient();
         this.registerRoutes();
     }
     Server.prototype.start = function (port) {
