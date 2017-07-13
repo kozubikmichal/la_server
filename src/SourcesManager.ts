@@ -5,6 +5,7 @@ import Kometa from "./parsers/Kometa";
 import Tusto from "./parsers/Tusto";
 import Rebio from "./parsers/Rebio";
 import MyFood from "./parsers/MyFood";
+import Spilberk from "./parsers/Spilberk";
 
 import restaurants from "./data/restaurants"
 
@@ -29,6 +30,10 @@ export default class SourcesManager {
 		restaurant: restaurants.kometaPubArena,
 		menuUrl: "http://arena.kometapub.cz/tydenni-menu.php",
 		parser: new Kometa()
+	}, {
+		restaurant: restaurants.spilberkCafe,
+		menuUrl: "http://www.spielberkcafe.cz/denni_menu.html",
+		parser: new Spilberk()
 	}, {
 		restaurant: restaurants.rebioHolandska,
 		menuUrl: "http://www.rebio.cz/Holandska/Nase-nabidka/dW-ei.folder.aspx",

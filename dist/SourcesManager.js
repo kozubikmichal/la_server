@@ -5,6 +5,7 @@ var Kometa_1 = require("./parsers/Kometa");
 var Tusto_1 = require("./parsers/Tusto");
 var Rebio_1 = require("./parsers/Rebio");
 var MyFood_1 = require("./parsers/MyFood");
+var Spilberk_1 = require("./parsers/Spilberk");
 var restaurants_1 = require("./data/restaurants");
 var SourcesManager = (function () {
     function SourcesManager() {
@@ -28,6 +29,10 @@ var SourcesManager = (function () {
                 restaurant: restaurants_1.default.kometaPubArena,
                 menuUrl: "http://arena.kometapub.cz/tydenni-menu.php",
                 parser: new Kometa_1.default()
+            }, {
+                restaurant: restaurants_1.default.spilberkCafe,
+                menuUrl: "http://www.spielberkcafe.cz/denni_menu.html",
+                parser: new Spilberk_1.default()
             }, {
                 restaurant: restaurants_1.default.rebioHolandska,
                 menuUrl: "http://www.rebio.cz/Holandska/Nase-nabidka/dW-ei.folder.aspx",

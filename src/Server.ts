@@ -41,7 +41,6 @@ export default class Server {
 				this.menuProvider.getMenuToday(req.params.id).then((data) => {
 					res.json(data)
 				});
-
 			})
 			.get(ROUTES.menu, (req, res) => {
 				this.menuProvider.getMenusToday().then((data) => {

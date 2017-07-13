@@ -27,6 +27,11 @@ export default {
 		name: "Tusto Titanium",
 		url: "http://titanium.tusto.cz/tydenni-menu/"
 	},
+	spilberkCafe: {
+		id: "spilberkCafe",
+		name: "Spilberk Café",
+		url: "http://www.spielberkcafe.cz/denni_menu.html"
+	},
 	kometaPubArena: {
 		id: "kometaPubArena",
 		name: "Kometa Pub Arena",
