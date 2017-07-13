@@ -13,10 +13,10 @@ const { JSDOM } = jsdom;
 export default class MenuProvider {
 	private sourcesManager = new SourcesManager();
 
-	getAllMenusToday(): Promise<IMenu[]> {
+	getMenusToday(): Promise<IMenu[]> {
 		return Promise.all(
 			this.sourcesManager.getSources().map((source) => {
-				return this.getMenuToday(source.menuUrl, source.parser).then(menus => {
+				return this.parseMenuToday(source.menuUrl, source.parser).then(menus => {
 					return {
 						restaurant: source.restaurant,
 						menus: menus
@@ -26,15 +26,35 @@ export default class MenuProvider {
 		)
 	}
 
-	getMenu(url: string, parser: IParser, day: number): Promise<IMenuSection[]> {
+	getMenuToday(restaurantId: string): Promise<IMenu> {
+		let source = this.sourcesManager.getSource(restaurantId);
+		if (!source) {
+			return Promise.resolve({
+				restaurant: {
+					id: "",
+					name: "unknown",
+					url: ""
+				},
+				menus: []
+			});
+		}
+		return this.parseMenuToday(source.menuUrl, source.parser).then((menus) => {
+			return {
+				restaurant: source.restaurant,
+				menus: menus
+			}
+		});
+	}
+
+	private parseMenu(url: string, parser: IParser, day: number): Promise<IMenuSection[]> {
 		return Request.get(url).then((data) => {
 			let dom = new JSDOM(data);
 			return parser.parseDay(dom, day);
 		})
 	}
 
-	getMenuToday(url: string, parser: IParser): Promise<IMenuSection[]> {
-		return this.getMenu(url, parser, (new Date()).getDay());
+	private parseMenuToday(url: string, parser: IParser): Promise<IMenuSection[]> {
+		return this.parseMenu(url, parser, (new Date()).getDay());
 	}
 }
 

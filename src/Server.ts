@@ -1,24 +1,32 @@
-import * as express from "express";
 import MenuProvider from "./MenuProvider";
+import RestaurantProvider from "./RestaurantProvider";
+
+import * as express from "express";
 import * as apicache from "apicache";
 import * as path from "path";
+
+import restaurants from "./data/restaurants"
 
 const CACHE_DURATION = "30 minutes"
 const API_ROOT = "/api"
 const ROUTES = {
 	menu: "/menu",
+	singleMenu: "/menu/:id",
+	restaurant: "/restaurant",
 	clearCache: "/clearCache"
 }
 
 export default class Server {
 	private menuProvider = new MenuProvider();
+	private restaurantProvider = new RestaurantProvider();
+
 	private app = express();
 	private router = express.Router();
 
 	constructor() {
 		this.useCache();
 		this.useRouter();
-		this.registerClient();
+		//		this.registerClient();
 		this.registerRoutes();
 	}
 
@@ -29,14 +37,25 @@ export default class Server {
 
 	private registerRoutes() {
 		this.router
+			.get(ROUTES.singleMenu, (req, res) => {
+				this.menuProvider.getMenuToday(req.params.id).then((data) => {
+					res.json(data)
+				});
+
+			})
 			.get(ROUTES.menu, (req, res) => {
-				this.menuProvider.getAllMenusToday().then((data) => {
+				this.menuProvider.getMenusToday().then((data) => {
 					res.json(data);
 				})
 			})
 			.get(ROUTES.clearCache, (req, res) => {
 				apicache.clear();
 				res.end();
+			})
+			.get(ROUTES.restaurant, (req, res) => {
+				this.restaurantProvider.getRestaurants().then((data) => {
+					res.json(data);
+				})
 			})
 	}
 

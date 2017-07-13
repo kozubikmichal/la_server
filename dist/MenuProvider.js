@@ -8,10 +8,10 @@ var MenuProvider = (function () {
     function MenuProvider() {
         this.sourcesManager = new SourcesManager_1.default();
     }
-    MenuProvider.prototype.getAllMenusToday = function () {
+    MenuProvider.prototype.getMenusToday = function () {
         var _this = this;
         return Promise.all(this.sourcesManager.getSources().map(function (source) {
-            return _this.getMenuToday(source.menuUrl, source.parser).then(function (menus) {
+            return _this.parseMenuToday(source.menuUrl, source.parser).then(function (menus) {
                 return {
                     restaurant: source.restaurant,
                     menus: menus
@@ -19,14 +19,33 @@ var MenuProvider = (function () {
             });
         }));
     };
-    MenuProvider.prototype.getMenu = function (url, parser, day) {
+    MenuProvider.prototype.getMenuToday = function (restaurantId) {
+        var source = this.sourcesManager.getSource(restaurantId);
+        if (!source) {
+            return Promise.resolve({
+                restaurant: {
+                    id: "",
+                    name: "unknown",
+                    url: ""
+                },
+                menus: []
+            });
+        }
+        return this.parseMenuToday(source.menuUrl, source.parser).then(function (menus) {
+            return {
+                restaurant: source.restaurant,
+                menus: menus
+            };
+        });
+    };
+    MenuProvider.prototype.parseMenu = function (url, parser, day) {
         return Request_1.default.get(url).then(function (data) {
             var dom = new JSDOM(data);
             return parser.parseDay(dom, day);
         });
     };
-    MenuProvider.prototype.getMenuToday = function (url, parser) {
-        return this.getMenu(url, parser, (new Date()).getDay());
+    MenuProvider.prototype.parseMenuToday = function (url, parser) {
+        return this.parseMenu(url, parser, (new Date()).getDay());
     };
     return MenuProvider;
 }());
