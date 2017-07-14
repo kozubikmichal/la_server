@@ -16,7 +16,7 @@ const MENU_PRICE_PARAGRAPH_END = "K menu:"
 
 export default class Spilberk implements IParser {
 	public parseDay(dom: jsdom.JSDOM, day: number) {
-		let dayName = DAY_NAMES[day];
+		let dayName = DAY_NAMES[day - 1];
 		let paragraphs = dom.window.document.querySelectorAll(`p`);
 		let dayIndex = this.indexOfParagraph(paragraphs, dayName);
 		let priceIndex = this.indexOfParagraph(paragraphs, MENU_PRICE_PARAGRAPH);

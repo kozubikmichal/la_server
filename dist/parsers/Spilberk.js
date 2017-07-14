@@ -13,7 +13,7 @@ var Spilberk = (function () {
     function Spilberk() {
     }
     Spilberk.prototype.parseDay = function (dom, day) {
-        var dayName = DAY_NAMES[day];
+        var dayName = DAY_NAMES[day - 1];
         var paragraphs = dom.window.document.querySelectorAll("p");
         var dayIndex = this.indexOfParagraph(paragraphs, dayName);
         var priceIndex = this.indexOfParagraph(paragraphs, MENU_PRICE_PARAGRAPH);
