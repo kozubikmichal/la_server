@@ -7,6 +7,9 @@ var Rebio_1 = require("./parsers/Rebio");
 var MyFood_1 = require("./parsers/MyFood");
 var Spilberk_1 = require("./parsers/Spilberk");
 var restaurants_1 = require("./data/restaurants");
+/**
+ * Sources manager
+ */
 var SourcesManager = (function () {
     function SourcesManager() {
         this.sources = [{
@@ -39,9 +42,16 @@ var SourcesManager = (function () {
                 parser: new Rebio_1.default()
             }];
     }
+    /**
+     * Gets data for all sources
+     */
     SourcesManager.prototype.getSources = function () {
         return this.sources;
     };
+    /**
+     * Gets data for one restaurant
+     * @param restaurantId restaurant id
+     */
     SourcesManager.prototype.getSource = function (restaurantId) {
         return this.getSources().filter(function (source) {
             return source.restaurant.id === restaurantId;

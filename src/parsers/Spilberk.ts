@@ -14,7 +14,16 @@ const DAY_NAMES = [
 const MENU_PRICE_PARAGRAPH = "Cena menu:"
 const MENU_PRICE_PARAGRAPH_END = "K menu:"
 
+/**
+ * Spilberk restaurant menu parser
+ */
 export default class Spilberk implements IParser {
+	/**
+	 * Parses menu for the given day
+	 *
+	 * @param dom dom parser
+	 * @param day day number
+	 */
 	public parseDay(dom: jsdom.JSDOM, day: number) {
 		let dayName = DAY_NAMES[day - 1];
 		let paragraphs = dom.window.document.querySelectorAll(`p`);

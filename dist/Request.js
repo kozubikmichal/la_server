@@ -1,10 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var axios_1 = require("axios");
+/**
+ * Request wrapper
+ */
 var Request = (function () {
     function Request() {
     }
-    Request.get = function (url) {
+    /**
+     * Sends GET request
+     *
+     * @param url url path
+     */
+    Request.prototype.get = function (url) {
         return axios_1.default.get(url, {
             proxy: {
                 host: "proxy.wdf.sap.corp",

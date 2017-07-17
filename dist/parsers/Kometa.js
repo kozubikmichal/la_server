@@ -1,8 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Kometa restaurant menu parser
+ */
 var Kometa = (function () {
     function Kometa() {
     }
+    /**
+     * Parses menu for the given day
+     *
+     * @param dom dom parser
+     * @param day day number
+     */
     Kometa.prototype.parseDay = function (dom, day) {
         var dayData = dom.window.document.querySelectorAll("div#div" + day + " tr");
         return Promise.resolve([{

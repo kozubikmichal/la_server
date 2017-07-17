@@ -1,8 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Tusto restaurant menu parser
+ */
 var Tusto = (function () {
     function Tusto() {
     }
+    /**
+     * Parses menu for the given day
+     *
+     * @param dom dom parser
+     * @param day day number
+     */
     Tusto.prototype.parseDay = function (dom, day) {
         var menu = dom.window.document.querySelectorAll("table.menu").item(day - 1);
         var dayData = menu.children.item(0);

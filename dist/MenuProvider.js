@@ -1,13 +1,18 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var SourcesManager_1 = require("./SourcesManager");
-var Request_1 = require("./Request");
 var jsdom = require("jsdom");
 var JSDOM = jsdom.JSDOM;
+/**
+ * Provides menu for the restaurants
+ */
 var MenuProvider = (function () {
-    function MenuProvider() {
-        this.sourcesManager = new SourcesManager_1.default();
+    function MenuProvider(sourcesManager, request) {
+        this.sourcesManager = sourcesManager;
+        this.request = request;
     }
+    /**
+     * Gets today menus for all restaurants
+     */
     MenuProvider.prototype.getMenusToday = function () {
         var _this = this;
         return Promise.all(this.sourcesManager.getSources().map(function (source) {
@@ -19,6 +24,10 @@ var MenuProvider = (function () {
             });
         }));
     };
+    /**
+     * Gets today menu for one restaurant
+     * @param restaurantId restaurant id
+     */
     MenuProvider.prototype.getMenuToday = function (restaurantId) {
         var source = this.sourcesManager.getSource(restaurantId);
         if (!source) {
@@ -39,7 +48,7 @@ var MenuProvider = (function () {
         });
     };
     MenuProvider.prototype.parseMenu = function (url, parser, day) {
-        return Request_1.default.get(url).then(function (data) {
+        return this.request.get(url).then(function (data) {
             var dom = new JSDOM(data);
             return parser.parseDay(dom, day);
         });

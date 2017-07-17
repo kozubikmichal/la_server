@@ -2,17 +2,22 @@ import IParser from "./parsers/IParser";
 import { IMenuSection } from "./IMenu";
 import IMenu from "./IMenu";
 
-import SourcesManager from "./SourcesManager";
+import ISourcesManager from "./ISourcesManager";
+import IRequest from "./IRequest";
 
-import Request from "./Request";
 import * as jsdom from "jsdom";
 
 const { JSDOM } = jsdom;
 
-
+/**
+ * Provides menu for the restaurants
+ */
 export default class MenuProvider {
-	private sourcesManager = new SourcesManager();
+	constructor(private sourcesManager: ISourcesManager, private request: IRequest) { }
 
+	/**
+	 * Gets today menus for all restaurants
+	 */
 	getMenusToday(): Promise<IMenu[]> {
 		return Promise.all(
 			this.sourcesManager.getSources().map((source) => {
@@ -26,6 +31,10 @@ export default class MenuProvider {
 		)
 	}
 
+	/**
+	 * Gets today menu for one restaurant
+	 * @param restaurantId restaurant id
+	 */
 	getMenuToday(restaurantId: string): Promise<IMenu> {
 		let source = this.sourcesManager.getSource(restaurantId);
 		if (!source) {
@@ -47,7 +56,7 @@ export default class MenuProvider {
 	}
 
 	private parseMenu(url: string, parser: IParser, day: number): Promise<IMenuSection[]> {
-		return Request.get(url).then((data) => {
+		return this.request.get(url).then((data) => {
 			let dom = new JSDOM(data);
 			return parser.parseDay(dom, day);
 		})

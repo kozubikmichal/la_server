@@ -3,7 +3,16 @@ import { IMeal } from "../IMenu";
 
 import * as jsdom from "jsdom";
 
+/**
+ * Kometa restaurant menu parser
+ */
 export default class Kometa implements IParser {
+	/**
+	 * Parses menu for the given day
+	 *
+	 * @param dom dom parser
+	 * @param day day number
+	 */
 	public parseDay(dom: jsdom.JSDOM, day: number) {
 		let dayData = dom.window.document.querySelectorAll(`div#div${day} tr`);
 

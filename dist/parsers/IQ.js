@@ -1,10 +1,24 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * IQ restaurant menu parser
+ */
 var IQ = (function () {
+    /**
+     * Constructor
+     *
+     * @param isWeek true if weekly menu is required
+     */
     function IQ(isWeek) {
         if (isWeek === void 0) { isWeek = false; }
         this.isWeek = isWeek;
     }
+    /**
+     * Parses menu for the given day
+     *
+     * @param dom dom parser
+     * @param day day number
+     */
     IQ.prototype.parseDay = function (dom, day) {
         var days = dom.window.document.querySelectorAll("dl.menuDayItems");
         var itemIndex = this.isWeek ? ((day - 1) * 2 + 1) : ((day - 1) * 2);

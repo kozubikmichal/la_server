@@ -3,7 +3,16 @@ import { IMeal } from "../IMenu";
 
 import * as jsdom from "jsdom";
 
+/**
+ * MyFood restaurant menu parser
+ */
 export default class MyFood implements IParser {
+	/**
+	 * Parses menu for the given day
+	 *
+	 * @param dom dom parser
+	 * @param day day number
+	 */
 	public parseDay(dom: jsdom.JSDOM, day: number) {
 		let soupIndex = (day - 1) * 2;
 		let allData = dom.window.document.querySelectorAll(`div.item`);

@@ -3,7 +3,16 @@ import { IMeal } from "../IMenu";
 
 import * as jsdom from "jsdom";
 
+/**
+ * Rebio restaurant menu parser
+ */
 export default class Rebio implements IParser {
+	/**
+	 * Parses menu for the given day
+	 *
+	 * @param dom dom parser
+	 * @param day day number
+	 */
 	public parseDay(dom: jsdom.JSDOM, day: number) {
 		let date = new Date();
 		date.setDate(date.getDate() + (day - date.getDay()));

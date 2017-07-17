@@ -1,4 +1,5 @@
 import ISource from "./ISource";
+import ISourcesManager from "./ISourcesManager";
 
 import IQ from "./parsers/IQ";
 import Kometa from "./parsers/Kometa";
@@ -9,7 +10,10 @@ import Spilberk from "./parsers/Spilberk";
 
 import restaurants from "./data/restaurants"
 
-export default class SourcesManager {
+/**
+ * Sources manager
+ */
+export default class SourcesManager implements ISourcesManager {
 	private sources: ISource[] = [{
 		restaurant: restaurants.iqHolandska,
 		menuUrl: "http://iqrestaurant.cz/brno/getData.svc?type=brnoMenuHTML2",
@@ -40,10 +44,17 @@ export default class SourcesManager {
 		parser: new Rebio()
 	}]
 
+	/**
+	 * Gets data for all sources
+	 */
 	getSources(): ISource[] {
 		return this.sources;
 	}
 
+	/**
+	 * Gets data for one restaurant
+	 * @param restaurantId restaurant id
+	 */
 	getSource(restaurantId: string): ISource {
 		return this.getSources().filter((source) => {
 			return source.restaurant.id === restaurantId;

@@ -3,9 +3,23 @@ import { IMeal } from "../IMenu";
 
 import * as jsdom from "jsdom";
 
+/**
+ * IQ restaurant menu parser
+ */
 export default class IQ implements IParser {
+	/**
+	 * Constructor
+	 *
+	 * @param isWeek true if weekly menu is required
+	 */
 	constructor(private isWeek: boolean = false) { }
 
+	/**
+	 * Parses menu for the given day
+	 *
+	 * @param dom dom parser
+	 * @param day day number
+	 */
 	public parseDay(dom: jsdom.JSDOM, day: number) {
 		let days = dom.window.document.querySelectorAll("dl.menuDayItems");
 		let itemIndex = this.isWeek ? ((day - 1) * 2 + 1) : ((day - 1) * 2);

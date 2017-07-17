@@ -1,8 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * Rebio restaurant menu parser
+ */
 var Rebio = (function () {
     function Rebio() {
     }
+    /**
+     * Parses menu for the given day
+     *
+     * @param dom dom parser
+     * @param day day number
+     */
     Rebio.prototype.parseDay = function (dom, day) {
         var date = new Date();
         date.setDate(date.getDate() + (day - date.getDay()));

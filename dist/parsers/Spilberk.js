@@ -9,9 +9,18 @@ var DAY_NAMES = [
 ];
 var MENU_PRICE_PARAGRAPH = "Cena menu:";
 var MENU_PRICE_PARAGRAPH_END = "K menu:";
+/**
+ * Spilberk restaurant menu parser
+ */
 var Spilberk = (function () {
     function Spilberk() {
     }
+    /**
+     * Parses menu for the given day
+     *
+     * @param dom dom parser
+     * @param day day number
+     */
     Spilberk.prototype.parseDay = function (dom, day) {
         var dayName = DAY_NAMES[day - 1];
         var paragraphs = dom.window.document.querySelectorAll("p");

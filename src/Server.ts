@@ -1,4 +1,6 @@
 import MenuProvider from "./MenuProvider";
+import Request from "./Request";
+import SourcesManager from "./SourcesManager";
 import RestaurantProvider from "./RestaurantProvider";
 
 import * as express from "express";
@@ -16,8 +18,11 @@ const ROUTES = {
 	clearCache: "/clearCache"
 }
 
+/**
+ * Server
+ */
 export default class Server {
-	private menuProvider = new MenuProvider();
+	private menuProvider = new MenuProvider(new SourcesManager(), new Request());
 	private restaurantProvider = new RestaurantProvider();
 
 	private app = express();
@@ -30,6 +35,11 @@ export default class Server {
 		this.registerRoutes();
 	}
 
+	/**
+	 * Starts server on the given port
+	 *
+	 * @param port port number
+	 */
 	public start(port: number) {
 		this.app.listen(port);
 		console.log("done");

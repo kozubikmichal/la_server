@@ -1,6 +1,8 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var MenuProvider_1 = require("./MenuProvider");
+var Request_1 = require("./Request");
+var SourcesManager_1 = require("./SourcesManager");
 var RestaurantProvider_1 = require("./RestaurantProvider");
 var express = require("express");
 var apicache = require("apicache");
@@ -13,9 +15,12 @@ var ROUTES = {
     restaurant: "/restaurant",
     clearCache: "/clearCache"
 };
+/**
+ * Server
+ */
 var Server = (function () {
     function Server() {
-        this.menuProvider = new MenuProvider_1.default();
+        this.menuProvider = new MenuProvider_1.default(new SourcesManager_1.default(), new Request_1.default());
         this.restaurantProvider = new RestaurantProvider_1.default();
         this.app = express();
         this.router = express.Router();
@@ -24,6 +29,11 @@ var Server = (function () {
         this.registerClient();
         this.registerRoutes();
     }
+    /**
+     * Starts server on the given port
+     *
+     * @param port port number
+     */
     Server.prototype.start = function (port) {
         this.app.listen(port);
         console.log("done");

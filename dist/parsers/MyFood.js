@@ -1,8 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+/**
+ * MyFood restaurant menu parser
+ */
 var MyFood = (function () {
     function MyFood() {
     }
+    /**
+     * Parses menu for the given day
+     *
+     * @param dom dom parser
+     * @param day day number
+     */
     MyFood.prototype.parseDay = function (dom, day) {
         var soupIndex = (day - 1) * 2;
         var allData = dom.window.document.querySelectorAll("div.item");
