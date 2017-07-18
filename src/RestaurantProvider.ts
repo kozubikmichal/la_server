@@ -21,5 +21,3 @@ export default class RestaurantProvider extends IRestaurantProvider {
 		);
 	}
 }
-
-declare var Promise: any;

@@ -40,5 +40,3 @@ export default class MyFood implements IParser {
 		return price.replace(" Kč", ",-");
 	}
 }
-
-declare var Promise: any;

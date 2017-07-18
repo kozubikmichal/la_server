@@ -37,5 +37,3 @@ export default class FakeSourcesManager extends ISourcesManager {
 		return FakeSourcesManager.sources.filter((s) => s.restaurant.id === id)[0];
 	}
 }
-
-declare var Promise: any;

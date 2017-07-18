@@ -73,5 +73,3 @@ export default class MenuProvider implements IMenuProvider {
 		return this.parseMenu(url, parser, (new Date()).getDay());
 	}
 }
-
-declare var Promise: any;

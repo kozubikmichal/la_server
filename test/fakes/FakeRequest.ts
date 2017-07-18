@@ -5,5 +5,3 @@ export default class FakeRequest extends IRequest {
 		return Promise.resolve("<html></html>")
 	}
 }
-
-declare var Promise: any;

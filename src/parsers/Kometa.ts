@@ -37,5 +37,3 @@ export default class Kometa implements IParser {
 		return name.trim();
 	}
 }
-
-declare var Promise: any;

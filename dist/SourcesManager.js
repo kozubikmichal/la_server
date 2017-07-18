@@ -6,20 +6,23 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var typescript_ioc_1 = require("typescript-ioc");
-var ISourcesManager_1 = require("./ISourcesManager");
-var IQ_1 = require("./parsers/IQ");
-var Kometa_1 = require("./parsers/Kometa");
-var Tusto_1 = require("./parsers/Tusto");
-var Rebio_1 = require("./parsers/Rebio");
-var MyFood_1 = require("./parsers/MyFood");
-var Spilberk_1 = require("./parsers/Spilberk");
-var restaurants_1 = require("./data/restaurants");
+const typescript_ioc_1 = require("typescript-ioc");
+const ISourcesManager_1 = require("./ISourcesManager");
+const IQ_1 = require("./parsers/IQ");
+const Kometa_1 = require("./parsers/Kometa");
+const Tusto_1 = require("./parsers/Tusto");
+const Rebio_1 = require("./parsers/Rebio");
+const MyFood_1 = require("./parsers/MyFood");
+const Spilberk_1 = require("./parsers/Spilberk");
+const restaurants_1 = require("./data/restaurants");
 /**
  * Sources manager
  */
-var SourcesManager = (function () {
-    function SourcesManager() {
+let SourcesManager = class SourcesManager {
+    /**
+     * Sources manager
+     */
+    constructor() {
         this.sources = [{
                 restaurant: restaurants_1.default.iqHolandska,
                 menuUrl: "http://iqrestaurant.cz/brno/getData.svc?type=brnoMenuHTML2",
@@ -53,20 +56,19 @@ var SourcesManager = (function () {
     /**
      * Gets data for all sources
      */
-    SourcesManager.prototype.getSources = function () {
+    getSources() {
         return this.sources;
-    };
+    }
     /**
      * Gets data for one restaurant
      * @param restaurantId restaurant id
      */
-    SourcesManager.prototype.getSource = function (restaurantId) {
-        return this.getSources().filter(function (source) {
+    getSource(restaurantId) {
+        return this.getSources().filter((source) => {
             return source.restaurant.id === restaurantId;
         })[0];
-    };
-    return SourcesManager;
-}());
+    }
+};
 SourcesManager = __decorate([
     typescript_ioc_1.Provides(ISourcesManager_1.default)
 ], SourcesManager);

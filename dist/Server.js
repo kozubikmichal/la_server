@@ -12,15 +12,15 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var typescript_ioc_1 = require("typescript-ioc");
-var IMenuProvider_1 = require("./IMenuProvider");
-var IRestaurantProvider_1 = require("./IRestaurantProvider");
-var express = require("express");
-var apicache = require("apicache");
-var path = require("path");
-var CACHE_DURATION = "30 minutes";
-var API_ROOT = "/api";
-var ROUTES = {
+const typescript_ioc_1 = require("typescript-ioc");
+const IMenuProvider_1 = require("./IMenuProvider");
+const IRestaurantProvider_1 = require("./IRestaurantProvider");
+const express = require("express");
+const apicache = require("apicache");
+const path = require("path");
+const CACHE_DURATION = "30 minutes";
+const API_ROOT = "/api";
+const ROUTES = {
     menu: "/menu",
     singleMenu: "/menu/:id",
     restaurant: "/restaurant",
@@ -29,8 +29,8 @@ var ROUTES = {
 /**
  * Server
  */
-var Server = (function () {
-    function Server(menuProvider, restaurantProvider) {
+let Server = class Server {
+    constructor(menuProvider, restaurantProvider) {
         this.menuProvider = menuProvider;
         this.restaurantProvider = restaurantProvider;
         this.app = express();
@@ -45,50 +45,48 @@ var Server = (function () {
      *
      * @param port port number
      */
-    Server.prototype.start = function (port) {
+    start(port) {
         this.app.listen(port);
         console.log("done");
-    };
-    Server.prototype.registerRoutes = function () {
-        var _this = this;
+    }
+    registerRoutes() {
         this.router
-            .get(ROUTES.singleMenu, function (req, res) {
-            _this.menuProvider.getMenuToday(req.params.id).then(function (data) {
+            .get(ROUTES.singleMenu, (req, res) => {
+            this.menuProvider.getMenuToday(req.params.id).then((data) => {
                 res.json(data);
             });
         })
-            .get(ROUTES.menu, function (req, res) {
-            _this.menuProvider.getMenusToday().then(function (data) {
+            .get(ROUTES.menu, (req, res) => {
+            this.menuProvider.getMenusToday().then((data) => {
                 res.json(data);
             });
         })
-            .get(ROUTES.clearCache, function (req, res) {
+            .get(ROUTES.clearCache, (req, res) => {
             apicache.clear();
             res.end();
         })
-            .get(ROUTES.restaurant, function (req, res) {
-            _this.restaurantProvider.getRestaurants().then(function (data) {
+            .get(ROUTES.restaurant, (req, res) => {
+            this.restaurantProvider.getRestaurants().then((data) => {
                 res.json(data);
             });
         });
-    };
-    Server.prototype.useCache = function () {
-        this.app.use(API_ROOT, apicache.middleware(CACHE_DURATION, function (req, res) {
+    }
+    useCache() {
+        this.app.use(API_ROOT, apicache.middleware(CACHE_DURATION, (req, res) => {
             return res.statusCode === 200;
         }));
-    };
-    Server.prototype.useRouter = function () {
+    }
+    useRouter() {
         this.app.use(API_ROOT, this.router);
-    };
-    Server.prototype.registerClient = function () {
+    }
+    registerClient() {
         this.app.use(express.static(__dirname + '/../client'));
-        this.app.get("/", function (req, res) {
-            var file = path.join(__dirname, "/../client/public/index.html");
+        this.app.get("/", (req, res) => {
+            let file = path.join(__dirname, "/../client/public/index.html");
             res.sendFile(file);
         });
-    };
-    return Server;
-}());
+    }
+};
 Server = __decorate([
     __param(0, typescript_ioc_1.Inject),
     __param(1, typescript_ioc_1.Inject),

@@ -1,14 +1,4 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = Object.setPrototypeOf ||
-        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
-    return function (d, b) {
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -16,27 +6,22 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var typescript_ioc_1 = require("typescript-ioc");
-var IRestaurantProvider_1 = require("./IRestaurantProvider");
-var restaurants_1 = require("./data/restaurants");
+const typescript_ioc_1 = require("typescript-ioc");
+const IRestaurantProvider_1 = require("./IRestaurantProvider");
+const restaurants_1 = require("./data/restaurants");
 /**
  * Restaurant provider
  */
-var RestaurantProvider = (function (_super) {
-    __extends(RestaurantProvider, _super);
-    function RestaurantProvider() {
-        return _super !== null && _super.apply(this, arguments) || this;
-    }
+let RestaurantProvider = class RestaurantProvider extends IRestaurantProvider_1.default {
     /**
      * Gets data for all restaurants
      */
-    RestaurantProvider.prototype.getRestaurants = function () {
-        return Promise.resolve(Object.keys(restaurants_1.default).map(function (key) {
+    getRestaurants() {
+        return Promise.resolve(Object.keys(restaurants_1.default).map((key) => {
             return restaurants_1.default[key];
         }));
-    };
-    return RestaurantProvider;
-}(IRestaurantProvider_1.default));
+    }
+};
 RestaurantProvider = __decorate([
     typescript_ioc_1.Provides(IRestaurantProvider_1.default)
 ], RestaurantProvider);

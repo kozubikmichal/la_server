@@ -42,5 +42,3 @@ export default class Tusto implements IParser {
 		return price.replace("Kč", "").trim()
 	}
 }
-
-declare var Promise: any;

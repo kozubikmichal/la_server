@@ -39,5 +39,3 @@ describe("MenuProvider", () => {
 		)
 	})
 })
-
-declare var Promise: any;

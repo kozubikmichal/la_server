@@ -41,5 +41,3 @@ export default class Rebio implements IParser {
 		return meals;
 	}
 }
-
-declare var Promise: any;

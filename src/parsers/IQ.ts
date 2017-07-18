@@ -49,5 +49,3 @@ export default class IQ implements IParser {
 		return price.replace(/\(.*\)/, "").trim();
 	}
 }
-
-declare var Promise: any;

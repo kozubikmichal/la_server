@@ -12,40 +12,39 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-var typescript_ioc_1 = require("typescript-ioc");
-var IMenuProvider_1 = require("./IMenuProvider");
-var ISourcesManager_1 = require("./ISourcesManager");
-var IRequest_1 = require("./IRequest");
-var jsdom = require("jsdom");
-var JSDOM = jsdom.JSDOM;
+const typescript_ioc_1 = require("typescript-ioc");
+const IMenuProvider_1 = require("./IMenuProvider");
+const ISourcesManager_1 = require("./ISourcesManager");
+const IRequest_1 = require("./IRequest");
+const jsdom = require("jsdom");
+const { JSDOM } = jsdom;
 /**
  * Provides menu for the restaurants
  */
-var MenuProvider = (function () {
-    function MenuProvider(sourcesManager, request) {
+let MenuProvider = class MenuProvider {
+    constructor(sourcesManager, request) {
         this.sourcesManager = sourcesManager;
         this.request = request;
     }
     /**
      * Gets today menus for all restaurants
      */
-    MenuProvider.prototype.getMenusToday = function () {
-        var _this = this;
-        return Promise.all(this.sourcesManager.getSources().map(function (source) {
-            return _this.parseMenuToday(source.menuUrl, source.parser).then(function (menus) {
+    getMenusToday() {
+        return Promise.all(this.sourcesManager.getSources().map((source) => {
+            return this.parseMenuToday(source.menuUrl, source.parser).then(menus => {
                 return {
                     restaurant: source.restaurant,
                     menus: menus
                 };
             });
         }));
-    };
+    }
     /**
      * Gets today menu for one restaurant
      * @param restaurantId restaurant id
      */
-    MenuProvider.prototype.getMenuToday = function (restaurantId) {
-        var source = this.sourcesManager.getSource(restaurantId);
+    getMenuToday(restaurantId) {
+        let source = this.sourcesManager.getSource(restaurantId);
         if (!source) {
             return Promise.resolve({
                 restaurant: {
@@ -56,24 +55,23 @@ var MenuProvider = (function () {
                 menus: []
             });
         }
-        return this.parseMenuToday(source.menuUrl, source.parser).then(function (menus) {
+        return this.parseMenuToday(source.menuUrl, source.parser).then((menus) => {
             return {
                 restaurant: source.restaurant,
                 menus: menus
             };
         });
-    };
-    MenuProvider.prototype.parseMenu = function (url, parser, day) {
-        return this.request.get(url).then(function (data) {
-            var dom = new JSDOM(data);
+    }
+    parseMenu(url, parser, day) {
+        return this.request.get(url).then((data) => {
+            let dom = new JSDOM(data);
             return parser.parseDay(dom, day);
         });
-    };
-    MenuProvider.prototype.parseMenuToday = function (url, parser) {
+    }
+    parseMenuToday(url, parser) {
         return this.parseMenu(url, parser, (new Date()).getDay());
-    };
-    return MenuProvider;
-}());
+    }
+};
 MenuProvider = __decorate([
     typescript_ioc_1.Provides(IMenuProvider_1.default),
     __param(0, typescript_ioc_1.Inject),

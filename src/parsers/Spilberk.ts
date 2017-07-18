@@ -85,5 +85,3 @@ export default class Spilberk implements IParser {
 		return -1;
 	}
 }
-
-declare var Promise: any;
