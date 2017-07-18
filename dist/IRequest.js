@@ -1,9 +1,12 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 /**
  * Request wrapper
  */
-class IRequest {
-}
-exports.default = IRequest;
+var IRequest = (function () {
+    function IRequest() {
+    }
+    return IRequest;
+}());
+exports["default"] = IRequest;
 //# sourceMappingURL=IRequest.js.map

@@ -1,0 +1,10 @@
+{
+    "exclude": [
+      "dist/**/*",
+      "src/**/I[A-Z]*",
+	  "src/data/**/*"
+    ],
+    "include": ["src/**/*.ts"],
+    "extension": [".ts"],
+    "all": true
+  }

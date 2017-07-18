@@ -4,9 +4,12 @@
     "sourceMap": true,
     "noImplicitAny": false,
     "module": "commonjs",
-    "target": "es2015",
+    "target": "es3",
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "lib": [
+      "dom", "es6"
+    ]
   },
   "include": [
     "./src/**/*"

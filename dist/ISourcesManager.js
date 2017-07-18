@@ -1,10 +1,13 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 /**
  * Sources manager
  */
-class ISourcesManager {
-}
-exports.default = ISourcesManager;
+var ISourcesManager = (function () {
+    function ISourcesManager() {
+    }
+    return ISourcesManager;
+}());
+exports["default"] = ISourcesManager;
 ;
 //# sourceMappingURL=ISourcesManager.js.map

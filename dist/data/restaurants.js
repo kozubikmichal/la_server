@@ -1,6 +1,6 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.default = {
+exports.__esModule = true;
+exports["default"] = {
     iqHolandska: {
         id: "iqHolandska",
         name: "IQ Holandská",
@@ -14,7 +14,7 @@ exports.default = {
     myFoodHolandska: {
         id: "myFoodHolandska",
         name: "MyFood Holandská",
-        url: "https://www.sklizeno.cz/o-nas/brno-holandska/",
+        url: "https://www.sklizeno.cz/o-nas/brno-holandska/"
     },
     tustoTitanium: {
         id: "tustoTitanium",

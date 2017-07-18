@@ -1,9 +1,12 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 /**
  * Restaurant provider
  */
-class IRestaurantProvider {
-}
-exports.default = IRestaurantProvider;
+var IRestaurantProvider = (function () {
+    function IRestaurantProvider() {
+    }
+    return IRestaurantProvider;
+}());
+exports["default"] = IRestaurantProvider;
 //# sourceMappingURL=IRestaurantProvider.js.map

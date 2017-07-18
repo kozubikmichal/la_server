@@ -1,39 +1,42 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 /**
  * Tusto restaurant menu parser
  */
-class Tusto {
+var Tusto = (function () {
+    function Tusto() {
+    }
     /**
      * Parses menu for the given day
      *
      * @param dom dom parser
      * @param day day number
      */
-    parseDay(dom, day) {
-        let menu = dom.window.document.querySelectorAll(`table.menu`).item(day - 1);
-        let dayData = menu.children.item(0);
+    Tusto.prototype.parseDay = function (dom, day) {
+        var menu = dom.window.document.querySelectorAll("table.menu").item(day - 1);
+        var dayData = menu.children.item(0);
         return Promise.resolve([{
                 meals: this.processMenuList(dayData)
             }]);
-    }
-    processMenuList(list) {
-        let meals = [];
-        for (let i = 1; i < list.children.length; ++i) {
-            let row = list.children[i];
+    };
+    Tusto.prototype.processMenuList = function (list) {
+        var meals = [];
+        for (var i = 1; i < list.children.length; ++i) {
+            var row = list.children[i];
             meals.push({
                 name: this.normalizeName(row.children[0].textContent),
                 price: this.normalizePrice(row.children[2].textContent)
             });
         }
         return meals;
-    }
-    normalizeName(name) {
+    };
+    Tusto.prototype.normalizeName = function (name) {
         return name.replace(/^\d+\)\s*/, "").trim();
-    }
-    normalizePrice(price) {
+    };
+    Tusto.prototype.normalizePrice = function (price) {
         return price.replace("Kč", "").trim();
-    }
-}
-exports.default = Tusto;
+    };
+    return Tusto;
+}());
+exports["default"] = Tusto;
 //# sourceMappingURL=Tusto.js.map

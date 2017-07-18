@@ -11,16 +11,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-const typescript_ioc_1 = require("typescript-ioc");
-const IMenuProvider_1 = require("./IMenuProvider");
-const IRestaurantProvider_1 = require("./IRestaurantProvider");
-const express = require("express");
-const apicache = require("apicache");
-const path = require("path");
-const CACHE_DURATION = "30 minutes";
-const API_ROOT = "/api";
-const ROUTES = {
+exports.__esModule = true;
+var typescript_ioc_1 = require("typescript-ioc");
+var IMenuProvider_1 = require("./IMenuProvider");
+var IRestaurantProvider_1 = require("./IRestaurantProvider");
+var express = require("express");
+var apicache = require("apicache");
+var path = require("path");
+var CACHE_DURATION = "30 minutes";
+var API_ROOT = "/api";
+var ROUTES = {
     menu: "/menu",
     singleMenu: "/menu/:id",
     restaurant: "/restaurant",
@@ -29,8 +29,8 @@ const ROUTES = {
 /**
  * Server
  */
-let Server = class Server {
-    constructor(menuProvider, restaurantProvider) {
+var Server = (function () {
+    function Server(menuProvider, restaurantProvider) {
         this.menuProvider = menuProvider;
         this.restaurantProvider = restaurantProvider;
         this.app = express();
@@ -45,53 +45,55 @@ let Server = class Server {
      *
      * @param port port number
      */
-    start(port) {
+    Server.prototype.start = function (port) {
         this.app.listen(port);
         console.log("done");
-    }
-    registerRoutes() {
+    };
+    Server.prototype.registerRoutes = function () {
+        var _this = this;
         this.router
-            .get(ROUTES.singleMenu, (req, res) => {
-            this.menuProvider.getMenuToday(req.params.id).then((data) => {
+            .get(ROUTES.singleMenu, function (req, res) {
+            _this.menuProvider.getMenuToday(req.params.id).then(function (data) {
                 res.json(data);
             });
         })
-            .get(ROUTES.menu, (req, res) => {
-            this.menuProvider.getMenusToday().then((data) => {
+            .get(ROUTES.menu, function (req, res) {
+            _this.menuProvider.getMenusToday().then(function (data) {
                 res.json(data);
             });
         })
-            .get(ROUTES.clearCache, (req, res) => {
+            .get(ROUTES.clearCache, function (req, res) {
             apicache.clear();
             res.end();
         })
-            .get(ROUTES.restaurant, (req, res) => {
-            this.restaurantProvider.getRestaurants().then((data) => {
+            .get(ROUTES.restaurant, function (req, res) {
+            _this.restaurantProvider.getRestaurants().then(function (data) {
                 res.json(data);
             });
         });
-    }
-    useCache() {
-        this.app.use(API_ROOT, apicache.middleware(CACHE_DURATION, (req, res) => {
+    };
+    Server.prototype.useCache = function () {
+        this.app.use(API_ROOT, apicache.middleware(CACHE_DURATION, function (req, res) {
             return res.statusCode === 200;
         }));
-    }
-    useRouter() {
+    };
+    Server.prototype.useRouter = function () {
         this.app.use(API_ROOT, this.router);
-    }
-    registerClient() {
+    };
+    Server.prototype.registerClient = function () {
         this.app.use(express.static(__dirname + '/../client'));
-        this.app.get("/", (req, res) => {
-            let file = path.join(__dirname, "/../client/public/index.html");
+        this.app.get("/", function (req, res) {
+            var file = path.join(__dirname, "/../client/public/index.html");
             res.sendFile(file);
         });
-    }
-};
+    };
+    return Server;
+}());
 Server = __decorate([
     __param(0, typescript_ioc_1.Inject),
     __param(1, typescript_ioc_1.Inject),
-    __metadata("design:paramtypes", [IMenuProvider_1.default,
-        IRestaurantProvider_1.default])
+    __metadata("design:paramtypes", [IMenuProvider_1["default"],
+        IRestaurantProvider_1["default"]])
 ], Server);
-exports.default = Server;
+exports["default"] = Server;
 //# sourceMappingURL=Server.js.map

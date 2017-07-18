@@ -1,9 +1,12 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 /**
  * Provides menu for the restaurants
  */
-class IMenuProvider {
-}
-exports.default = IMenuProvider;
+var IMenuProvider = (function () {
+    function IMenuProvider() {
+    }
+    return IMenuProvider;
+}());
+exports["default"] = IMenuProvider;
 //# sourceMappingURL=IMenuProvider.js.map

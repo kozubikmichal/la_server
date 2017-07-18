@@ -1,35 +1,38 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 /**
  * Kometa restaurant menu parser
  */
-class Kometa {
+var Kometa = (function () {
+    function Kometa() {
+    }
     /**
      * Parses menu for the given day
      *
      * @param dom dom parser
      * @param day day number
      */
-    parseDay(dom, day) {
-        let dayData = dom.window.document.querySelectorAll(`div#div${day} tr`);
+    Kometa.prototype.parseDay = function (dom, day) {
+        var dayData = dom.window.document.querySelectorAll("div#div" + day + " tr");
         return Promise.resolve([{
                 meals: this.processMenuList(dayData)
             }]);
-    }
-    processMenuList(list) {
-        let meals = [];
-        for (let i = 1; i < list.length; ++i) {
-            let row = list.item(i);
+    };
+    Kometa.prototype.processMenuList = function (list) {
+        var meals = [];
+        for (var i = 1; i < list.length; ++i) {
+            var row = list.item(i);
             meals.push({
                 name: this.normalizeName(row.children[0].textContent),
                 price: row.children[1].textContent
             });
         }
         return meals;
-    }
-    normalizeName(name) {
+    };
+    Kometa.prototype.normalizeName = function (name) {
         return name.trim();
-    }
-}
-exports.default = Kometa;
+    };
+    return Kometa;
+}());
+exports["default"] = Kometa;
 //# sourceMappingURL=Kometa.js.map

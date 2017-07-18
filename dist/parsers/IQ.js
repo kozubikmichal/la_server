@@ -1,15 +1,16 @@
 "use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
+exports.__esModule = true;
 /**
  * IQ restaurant menu parser
  */
-class IQ {
+var IQ = (function () {
     /**
      * Constructor
      *
      * @param isWeek true if weekly menu is required
      */
-    constructor(isWeek = false) {
+    function IQ(isWeek) {
+        if (isWeek === void 0) { isWeek = false; }
         this.isWeek = isWeek;
     }
     /**
@@ -18,18 +19,18 @@ class IQ {
      * @param dom dom parser
      * @param day day number
      */
-    parseDay(dom, day) {
-        let days = dom.window.document.querySelectorAll("dl.menuDayItems");
-        let itemIndex = this.isWeek ? ((day - 1) * 2 + 1) : ((day - 1) * 2);
-        let data = days.item(itemIndex);
+    IQ.prototype.parseDay = function (dom, day) {
+        var days = dom.window.document.querySelectorAll("dl.menuDayItems");
+        var itemIndex = this.isWeek ? ((day - 1) * 2 + 1) : ((day - 1) * 2);
+        var data = days.item(itemIndex);
         return Promise.resolve([{
                 meals: this.processMenuList(data)
             }]);
-    }
-    processMenuList(list) {
-        let meals = [];
-        let mainMealIndex = 1;
-        for (let i = 0; i < list.children.length; i += 2) {
+    };
+    IQ.prototype.processMenuList = function (list) {
+        var meals = [];
+        var mainMealIndex = 1;
+        for (var i = 0; i < list.children.length; i += 2) {
             list.children[i].removeChild(list.children[i].children[0]);
             meals.push({
                 name: list.children[i].textContent,
@@ -37,10 +38,11 @@ class IQ {
             });
         }
         return meals;
-    }
-    normalizePrice(price) {
+    };
+    IQ.prototype.normalizePrice = function (price) {
         return price.replace(/\(.*\)/, "").trim();
-    }
-}
-exports.default = IQ;
+    };
+    return IQ;
+}());
+exports["default"] = IQ;
 //# sourceMappingURL=IQ.js.map
