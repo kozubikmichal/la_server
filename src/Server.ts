@@ -1,13 +1,11 @@
-import MenuProvider from "./MenuProvider";
-import Request from "./Request";
-import SourcesManager from "./SourcesManager";
-import RestaurantProvider from "./RestaurantProvider";
+import { Inject } from "typescript-ioc"
+
+import IMenuProvider from "./IMenuProvider";
+import IRestaurantProvider from "./IRestaurantProvider";
 
 import * as express from "express";
 import * as apicache from "apicache";
 import * as path from "path";
-
-import restaurants from "./data/restaurants"
 
 const CACHE_DURATION = "30 minutes"
 const API_ROOT = "/api"
@@ -22,13 +20,13 @@ const ROUTES = {
  * Server
  */
 export default class Server {
-	private menuProvider = new MenuProvider(new SourcesManager(), new Request());
-	private restaurantProvider = new RestaurantProvider();
-
 	private app = express();
 	private router = express.Router();
 
-	constructor() {
+	constructor(
+		@Inject private menuProvider: IMenuProvider,
+		@Inject private restaurantProvider: IRestaurantProvider
+	) {
 		this.useCache();
 		this.useRouter();
 		this.registerClient();

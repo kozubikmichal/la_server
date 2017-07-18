@@ -1,13 +1,11 @@
 /**
  * Request wrapper
  */
-interface IRequest {
+export default abstract class IRequest {
 	/**
 	 * Sends GET request
 	 *
 	 * @param url url path
 	 */
-	get(url): Promise<any>
+	abstract get(url): Promise<any>
 }
-
-export default IRequest;

@@ -2,12 +2,6 @@ import ISourcesManager from "../../src/ISourcesManager";
 import IParser from "../../src/parsers/IParser";
 import ISource from "../../src/ISource";
 
-let fakeRestaurant = {
-	url: "url",
-	name: "name",
-	id: "id"
-}
-
 export class DummyParser implements IParser {
 	parseDay() {
 		return Promise.resolve([{
@@ -16,23 +10,31 @@ export class DummyParser implements IParser {
 	}
 }
 
-export default class FakeSourcesManager implements ISourcesManager {
-	public sources = [{
+export default class FakeSourcesManager extends ISourcesManager {
+	public static sources = [{
 		menuUrl: "firstUrl",
 		parser: new DummyParser(),
-		restaurant: fakeRestaurant,
+		restaurant: {
+			id: "id1",
+			name: "name1",
+			url: "url1"
+		},
 	}, {
 		menuUrl: "secondUrl",
 		parser: new DummyParser(),
-		restaurant: fakeRestaurant
+		restaurant: {
+			id: "id2",
+			name: "name2",
+			url: "url2"
+		}
 	}];
 
 	getSources(): ISource[] {
-		return this.sources;
+		return FakeSourcesManager.sources;
 	}
 
-	getSource(restaurantId: string): ISource {
-		return this.sources[0];
+	getSource(id: string): ISource {
+		return FakeSourcesManager.sources.filter((s) => s.restaurant.id === id)[0];
 	}
 }
 

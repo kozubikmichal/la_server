@@ -3,17 +3,15 @@ import ISource from "./ISource";
 /**
  * Sources manager
  */
-interface ISourcesManager {
+export default abstract class ISourcesManager {
 	/**
 	 * Gets data for all sources
 	 */
-	getSources(): ISource[]
+	abstract getSources(): ISource[]
 
 	/**
 	 * Gets data for one restaurant
 	 * @param restaurantId restaurant id
 	 */
-	getSource(restaurantId: string): ISource
+	abstract getSource(restaurantId: string): ISource
 };
-
-export default ISourcesManager;

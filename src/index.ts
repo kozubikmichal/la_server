@@ -1,11 +1,13 @@
+import { Container } from "typescript-ioc"
+
+import IoCConfig from "./IoCConfig";
 import Server from "./Server";
 
-import Request from "./Request";
+IoCConfig.configure();
 
 let port = Number(process.env.PORT) || 3333;
 
 console.log("start");
 
-
-let server = new Server();
+let server = Container.get(Server)
 server.start(port);

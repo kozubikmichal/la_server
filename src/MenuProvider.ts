@@ -1,7 +1,10 @@
-import IParser from "./parsers/IParser";
+import { Inject, Provides } from "typescript-ioc"
 import { IMenuSection } from "./IMenu";
+
+import IParser from "./parsers/IParser";
 import IMenu from "./IMenu";
 
+import IMenuProvider from "./IMenuProvider";
 import ISourcesManager from "./ISourcesManager";
 import IRequest from "./IRequest";
 
@@ -12,8 +15,12 @@ const { JSDOM } = jsdom;
 /**
  * Provides menu for the restaurants
  */
-export default class MenuProvider {
-	constructor(private sourcesManager: ISourcesManager, private request: IRequest) { }
+@Provides(IMenuProvider)
+export default class MenuProvider implements IMenuProvider {
+	constructor(
+		@Inject private sourcesManager?: ISourcesManager,
+		@Inject private request?: IRequest
+	) { }
 
 	/**
 	 * Gets today menus for all restaurants

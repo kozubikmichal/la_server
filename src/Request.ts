@@ -1,10 +1,13 @@
+import { Provides } from "typescript-ioc"
+
 import IRequest from "./IRequest";
 import axios from "axios";
 
 /**
  * Request wrapper
  */
-export default class Request implements IRequest {
+@Provides(IRequest)
+export default class Request extends IRequest {
 	/**
 	 * Sends GET request
 	 *

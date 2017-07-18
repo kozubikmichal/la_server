@@ -1,3 +1,4 @@
+import { Provides } from "typescript-ioc"
 import ISource from "./ISource";
 import ISourcesManager from "./ISourcesManager";
 
@@ -13,6 +14,7 @@ import restaurants from "./data/restaurants"
 /**
  * Sources manager
  */
+@Provides(ISourcesManager)
 export default class SourcesManager implements ISourcesManager {
 	private sources: ISource[] = [{
 		restaurant: restaurants.iqHolandska,
