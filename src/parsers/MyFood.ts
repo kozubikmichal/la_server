@@ -14,12 +14,11 @@ export default class MyFood implements IParser {
 	 * @param day day number
 	 */
 	public parseDay(dom: jsdom.JSDOM, day: number) {
-		let soupIndex = (day - 1) * 2;
-		let allData = dom.window.document.querySelectorAll(`div.item`);
+		let dayData = dom.window.document.querySelectorAll(`div.jidla>div`).item(day - 1);
 
 		return Promise.resolve([{
-			meals: this.processMenuList(allData.item(soupIndex)).concat(
-				this.processMenuList(allData.item(soupIndex + 1))
+			meals: this.processMenuList(dayData.children[0]).concat(
+				this.processMenuList(dayData.children[1])
 			)
 		}]);
 	}

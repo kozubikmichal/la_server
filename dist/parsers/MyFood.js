@@ -13,10 +13,9 @@ var MyFood = (function () {
      * @param day day number
      */
     MyFood.prototype.parseDay = function (dom, day) {
-        var soupIndex = (day - 1) * 2;
-        var allData = dom.window.document.querySelectorAll("div.item");
+        var dayData = dom.window.document.querySelectorAll("div.jidla>div").item(day - 1);
         return Promise.resolve([{
-                meals: this.processMenuList(allData.item(soupIndex)).concat(this.processMenuList(allData.item(soupIndex + 1)))
+                meals: this.processMenuList(dayData.children[0]).concat(this.processMenuList(dayData.children[1]))
             }]);
     };
     MyFood.prototype.processMenuList = function (list) {
