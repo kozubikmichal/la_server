@@ -2,8 +2,13 @@
     "exclude": [
       "dist/**/*",
       "src/**/I[A-Z]*",
+      "src/**/IoCConfig.ts",
 	  "src/data/**/*"
     ],
+	"reporter": [
+		"lcov",
+		"text"
+	],
     "include": ["src/**/*.ts"],
     "extension": [".ts"],
     "all": true

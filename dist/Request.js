@@ -17,6 +17,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 exports.__esModule = true;
 var typescript_ioc_1 = require("typescript-ioc");
+var Constants_1 = require("./Constants");
 var IRequest_1 = require("./IRequest");
 var axios_1 = require("axios");
 /**
@@ -33,10 +34,19 @@ var Request = (function (_super) {
      * @param url url path
      */
     Request.prototype.get = function (url) {
+        // Default usage is from corporate network -> use proxy
         return axios_1["default"].get(url, {
             proxy: {
-                host: "proxy.wdf.sap.corp",
-                port: 8080
+                host: Constants_1["default"].ProxyHost,
+                port: Constants_1["default"].ProxyPort
+            }
+        })["catch"](function (error) {
+            // In case of error try to perform request wihout proxy setting
+            if (error.code === "ENOTFOUND") {
+                return axios_1["default"].get(url);
+            }
+            else {
+                return Promise.reject(error);
             }
         }).then(function (response) {
             return response.data;

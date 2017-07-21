@@ -13,7 +13,7 @@ export default {
 		url: "http://iqrestaurant.cz/brno/menu.html"
 	},
 	iqHolandskaWeek: {
-		id: "iqHolanskaWeek",
+		id: "iqHolandskaWeek",
 		name: "IQ Holandská (Týdenní nabídka)",
 		url: "http://iqrestaurant.cz/brno/menu.html"
 	},

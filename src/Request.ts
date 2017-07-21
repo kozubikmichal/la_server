@@ -1,5 +1,5 @@
 import { Provides } from "typescript-ioc"
-
+import Constants from "./Constants";
 import IRequest from "./IRequest";
 import axios from "axios";
 
@@ -14,10 +14,18 @@ export default class Request extends IRequest {
 	 * @param url url path
 	 */
 	public get(url): Promise<any> {
+		// Default usage is from corporate network -> use proxy
 		return axios.get(url, {
 			proxy: {
-				host: "proxy.wdf.sap.corp",
-				port: 8080
+				host: Constants.ProxyHost,
+				port: Constants.ProxyPort
+			}
+		}).catch(error => {
+			// In case of error try to perform request wihout proxy setting
+			if (error.code === "ENOTFOUND") {
+				return axios.get(url);
+			} else {
+				return Promise.reject(error);
 			}
 		}).then((response) => {
 			return response.data
