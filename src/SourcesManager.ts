@@ -8,6 +8,7 @@ import Tusto from "./parsers/Tusto";
 import Rebio from "./parsers/Rebio";
 import MyFood from "./parsers/MyFood";
 import Spilberk from "./parsers/Spilberk";
+import Makalu from "./parsers/Makalu";
 
 import restaurants from "./data/restaurants"
 
@@ -44,6 +45,10 @@ export default class SourcesManager implements ISourcesManager {
 		restaurant: restaurants.rebioHolandska,
 		menuUrl: "http://www.rebio.cz/Holandska/Nase-nabidka/dW-ei.folder.aspx",
 		parser: new Rebio()
+	}, {
+		restaurant: restaurants.makaluBrno,
+		menuUrl: "http://www.nepalska-restaurace-makalu.cz/index.php",
+		parser: new Makalu()
 	}]
 
 	/**

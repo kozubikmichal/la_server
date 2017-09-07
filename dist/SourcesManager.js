@@ -14,6 +14,7 @@ var Tusto_1 = require("./parsers/Tusto");
 var Rebio_1 = require("./parsers/Rebio");
 var MyFood_1 = require("./parsers/MyFood");
 var Spilberk_1 = require("./parsers/Spilberk");
+var Makalu_1 = require("./parsers/Makalu");
 var restaurants_1 = require("./data/restaurants");
 /**
  * Sources manager
@@ -48,6 +49,10 @@ var SourcesManager = (function () {
                 restaurant: restaurants_1["default"].rebioHolandska,
                 menuUrl: "http://www.rebio.cz/Holandska/Nase-nabidka/dW-ei.folder.aspx",
                 parser: new Rebio_1["default"]()
+            }, {
+                restaurant: restaurants_1["default"].makaluBrno,
+                menuUrl: "http://www.nepalska-restaurace-makalu.cz/index.php",
+                parser: new Makalu_1["default"]()
             }];
     }
     /**

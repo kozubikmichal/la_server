@@ -41,5 +41,10 @@ export default {
 		id: "rebioHolandska",
 		name: "Rebio Holandská",
 		url: "http://www.rebio.cz/Holandska/Nase-nabidka/dW-ei.folder.aspx"
+	},
+	makaluBrno: {
+		id: "makaluBrno",
+		name: "Makalu",
+		url: "http://www.nepalska-restaurace-makalu.cz/index.php"
 	}
 };
