@@ -8,4 +8,6 @@ export default abstract class IRequest {
 	 * @param url url path
 	 */
 	abstract get(url): Promise<any>
+
+	abstract download(url, filePath): Promise<any>
 }

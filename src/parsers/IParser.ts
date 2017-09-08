@@ -10,9 +10,10 @@ interface IParser {
 	 *
 	 * @param {jsdom.JSDOM} dom dom parser
 	 * @param {number} day day number
+	 * @param {*} data original data from server before parsed into the jsondom
 	 * @returns {Promise<IMenuSection[]>} promise that resolves when menu is parsed
 	 */
-	parseDay(dom: jsdom.JSDOM, day: number): Promise<IMenuSection[]>
+	parseDay(dom: jsdom.JSDOM, day: number, data?: any): Promise<IMenuSection[]>
 }
 
 export default IParser;

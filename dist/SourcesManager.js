@@ -15,6 +15,8 @@ var Rebio_1 = require("./parsers/Rebio");
 var MyFood_1 = require("./parsers/MyFood");
 var Spilberk_1 = require("./parsers/Spilberk");
 var Makalu_1 = require("./parsers/Makalu");
+var UTesare_1 = require("./parsers/UTesare");
+var UTesareVIP_1 = require("./parsers/UTesareVIP");
 var restaurants_1 = require("./data/restaurants");
 /**
  * Sources manager
@@ -29,6 +31,14 @@ var SourcesManager = (function () {
                 restaurant: restaurants_1["default"].iqHolandskaWeek,
                 menuUrl: "http://iqrestaurant.cz/brno/getData.svc?type=brnoMenuHTML2",
                 parser: new IQ_1["default"](true)
+            }, {
+                restaurant: restaurants_1["default"].utesare,
+                menuUrl: "http://www.utesare.cz/Menu.pdf",
+                parser: new UTesare_1["default"]()
+            }, {
+                restaurant: restaurants_1["default"].utesareVIP,
+                menuUrl: "http://www.utesare.cz/Menu.pdf",
+                parser: new UTesareVIP_1["default"]()
             }, {
                 restaurant: restaurants_1["default"].myFoodHolandska,
                 menuUrl: "http://www.sklizeno.cz/o-nas/brno-holandska/",

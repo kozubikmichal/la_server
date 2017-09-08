@@ -9,6 +9,8 @@ import Rebio from "./parsers/Rebio";
 import MyFood from "./parsers/MyFood";
 import Spilberk from "./parsers/Spilberk";
 import Makalu from "./parsers/Makalu";
+import UTesare from "./parsers/UTesare";
+import UTesareVIP from "./parsers/UTesareVIP";
 
 import restaurants from "./data/restaurants"
 
@@ -25,6 +27,14 @@ export default class SourcesManager implements ISourcesManager {
 		restaurant: restaurants.iqHolandskaWeek,
 		menuUrl: "http://iqrestaurant.cz/brno/getData.svc?type=brnoMenuHTML2",
 		parser: new IQ(true)
+	}, {
+		restaurant: restaurants.utesare,
+		menuUrl: "http://www.utesare.cz/Menu.pdf",
+		parser: new UTesare()
+	}, {
+		restaurant: restaurants.utesareVIP,
+		menuUrl: "http://www.utesare.cz/Menu.pdf",
+		parser: new UTesareVIP()
 	}, {
 		restaurant: restaurants.myFoodHolandska,
 		menuUrl: "http://www.sklizeno.cz/o-nas/brno-holandska/",

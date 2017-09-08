@@ -65,7 +65,7 @@ export default class MenuProvider implements IMenuProvider {
 	private parseMenu(url: string, parser: IParser, day: number): Promise<IMenuSection[]> {
 		return this.request.get(url).then((data) => {
 			let dom = new JSDOM(data);
-			return parser.parseDay(dom, day);
+			return parser.parseDay(dom, day, data);
 		})
 	}
 

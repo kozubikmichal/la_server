@@ -66,7 +66,7 @@ var MenuProvider = (function () {
     MenuProvider.prototype.parseMenu = function (url, parser, day) {
         return this.request.get(url).then(function (data) {
             var dom = new JSDOM(data);
-            return parser.parseDay(dom, day);
+            return parser.parseDay(dom, day, data);
         });
     };
     MenuProvider.prototype.parseMenuToday = function (url, parser) {

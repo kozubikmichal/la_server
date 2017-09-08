@@ -20,6 +20,8 @@ var typescript_ioc_1 = require("typescript-ioc");
 var Constants_1 = require("./Constants");
 var IRequest_1 = require("./IRequest");
 var axios_1 = require("axios");
+var http = require("http");
+var fs = require("fs");
 /**
  * Request wrapper
  */
@@ -50,6 +52,30 @@ var Request = (function (_super) {
             }
         }).then(function (response) {
             return response.data;
+        });
+    };
+    Request.prototype.download = function (url, filePath) {
+        var file = fs.createWriteStream(filePath);
+        return new Promise(function (resolve, reject) {
+            var processResponse = function (response) {
+                response.pipe(file);
+                file.on("finish", function () {
+                    file.close();
+                    resolve();
+                });
+            };
+            http.get({
+                host: Constants_1["default"].ProxyHost,
+                port: Constants_1["default"].ProxyPort,
+                path: url
+            }, processResponse).on("error", function (error) {
+                if (error.name === "ENOTFOUND") {
+                    http.get(filePath, processResponse).on("error", function (error) { return reject(error); });
+                }
+                else {
+                    reject(error);
+                }
+            });
         });
     };
     return Request;

@@ -40,6 +40,16 @@ exports["default"] = {
         id: "makaluBrno",
         name: "Makalu",
         url: "http://www.nepalska-restaurace-makalu.cz/index.php"
+    },
+    utesare: {
+        id: "utesare",
+        name: "U Tesaře",
+        url: "http://www.utesare.cz/Menu.pdf"
+    },
+    utesareVIP: {
+        id: "utesareVIP",
+        name: "U Tesaře - V.I.P. menu",
+        url: "http://www.utesare.cz/Menu.pdf"
     }
 };
 //# sourceMappingURL=restaurants.js.map

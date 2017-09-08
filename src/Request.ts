@@ -1,7 +1,10 @@
 import { Provides } from "typescript-ioc"
 import Constants from "./Constants";
 import IRequest from "./IRequest";
+
 import axios from "axios";
+import * as http from "http";
+import * as fs from "fs";
 
 /**
  * Request wrapper
@@ -30,5 +33,32 @@ export default class Request extends IRequest {
 		}).then((response) => {
 			return response.data
 		});
+	}
+
+	public download(url, filePath): Promise<any> {
+		let file = fs.createWriteStream(filePath);
+
+		return new Promise((resolve, reject) => {
+			let processResponse = response => {
+				response.pipe(file);
+				file.on("finish", () => {
+					file.close();
+					resolve();
+				})
+			}
+
+			http.get({
+				host: Constants.ProxyHost,
+				port: Constants.ProxyPort,
+				path: url
+			}, processResponse
+			).on("error", error => {
+				if (error.name === "ENOTFOUND") {
+					http.get(filePath, processResponse).on("error", error => reject(error));
+				} else {
+					reject(error);
+				}
+			})
+		})
 	}
 }
