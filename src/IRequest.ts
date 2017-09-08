@@ -9,5 +9,5 @@ export default abstract class IRequest {
 	 */
 	abstract get(url): Promise<any>
 
-	abstract download(url, filePath): Promise<any>
+	abstract download(url): Promise<Buffer>
 }

@@ -34,7 +34,7 @@ export default class UTesare implements IParser {
 		return Promise.resolve([]);
 	}
 
-	protected parsePdfMenu(): Promise<string[]> {
+	protected parsePdfMenu(pdf): Promise<string[]> {
 		return new Promise((resolve, reject) => {
 			let rows = {};
 
@@ -48,7 +48,7 @@ export default class UTesare implements IParser {
 				}
 			}
 
-			new pdfreader.PdfReader().parseFileItems(FILE_PATH, (err, item) => {
+			new pdfreader.PdfReader().parseBuffer(pdf, (err, item) => {
 				if (!item || item.page) {
 					processRows();
 					rows = {};
@@ -60,7 +60,7 @@ export default class UTesare implements IParser {
 	}
 
 	protected downloadMenu(): Promise<any> {
-		return this.request.download(MENU_URL, FILE_PATH);
+		return this.request.download(MENU_URL);
 	}
 
 	protected indexOfRow(rows: string[], content: string): number {

@@ -26,7 +26,7 @@ var UTesare = (function () {
     UTesare.prototype.parseDay = function (dom, day, data) {
         return Promise.resolve([]);
     };
-    UTesare.prototype.parsePdfMenu = function () {
+    UTesare.prototype.parsePdfMenu = function (pdf) {
         return new Promise(function (resolve, reject) {
             var rows = {};
             var processRows = function () {
@@ -37,7 +37,7 @@ var UTesare = (function () {
                     resolve(data);
                 }
             };
-            new pdfreader.PdfReader().parseFileItems(FILE_PATH, function (err, item) {
+            new pdfreader.PdfReader().parseBuffer(pdf, function (err, item) {
                 if (!item || item.page) {
                     processRows();
                     rows = {};
@@ -49,7 +49,7 @@ var UTesare = (function () {
         });
     };
     UTesare.prototype.downloadMenu = function () {
-        return this.request.download(MENU_URL, FILE_PATH);
+        return this.request.download(MENU_URL);
     };
     UTesare.prototype.indexOfRow = function (rows, content) {
         var index = rows.findIndex(function (row) { return row === content; });

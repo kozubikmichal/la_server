@@ -28,7 +28,7 @@ var UTesareVIP = (function (_super) {
     UTesareVIP.prototype.parseDay = function (dom, day, data) {
         var _this = this;
         return this.downloadMenu()
-            .then(function () { return _this.parsePdfMenu(); })
+            .then(function (menu) { return _this.parsePdfMenu(menu); })
             .then(function (menu) {
             return [{
                     meals: _this.processVIPMenu(menu)

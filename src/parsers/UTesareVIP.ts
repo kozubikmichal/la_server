@@ -18,7 +18,7 @@ export default class UTesareVIP extends Base {
 	 */
 	public parseDay(dom: jsdom.JSDOM, day: number, data: any) {
 		return this.downloadMenu()
-			.then(() => this.parsePdfMenu())
+			.then(menu => this.parsePdfMenu(menu))
 			.then(menu => {
 				return [{
 					meals: this.processVIPMenu(menu)

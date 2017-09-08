@@ -21,7 +21,6 @@ var Constants_1 = require("./Constants");
 var IRequest_1 = require("./IRequest");
 var axios_1 = require("axios");
 var http = require("http");
-var fs = require("fs");
 /**
  * Request wrapper
  */
@@ -54,14 +53,14 @@ var Request = (function (_super) {
             return response.data;
         });
     };
-    Request.prototype.download = function (url, filePath) {
-        var file = fs.createWriteStream(filePath);
+    Request.prototype.download = function (url) {
         return new Promise(function (resolve, reject) {
             var processResponse = function (response) {
-                response.pipe(file);
-                file.on("finish", function () {
-                    file.close();
-                    resolve();
+                var body = [];
+                response.on("data", function (data) {
+                    body.push(data);
+                }).on("end", function () {
+                    resolve(Buffer.concat(body));
                 });
             };
             http.get({
@@ -70,7 +69,7 @@ var Request = (function (_super) {
                 path: url
             }, processResponse).on("error", function (error) {
                 if (error.name === "ENOTFOUND") {
-                    http.get(filePath, processResponse).on("error", function (error) { return reject(error); });
+                    http.get(url, processResponse).on("error", function (error) { return reject(error); });
                 }
                 else {
                     reject(error);
