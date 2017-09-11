@@ -31,11 +31,13 @@ export default class SourcesManager implements ISourcesManager {
 		restaurant: restaurants.utesare,
 		menuUrl: "http://www.utesare.cz/Menu.pdf",
 		parser: new UTesare()
-	}, {
-		restaurant: restaurants.utesareVIP,
-		menuUrl: "http://www.utesare.cz/Menu.pdf",
-		parser: new UTesareVIP()
-	}, {
+	}
+		// , {
+		// 	restaurant: restaurants.utesareVIP,
+		// 	menuUrl: "http://www.utesare.cz/Menu.pdf",
+		// 	parser: new UTesareVIP()
+		// }
+		, {
 		restaurant: restaurants.myFoodHolandska,
 		menuUrl: "http://www.sklizeno.cz/o-nas/brno-holandska/",
 		parser: new MyFood()

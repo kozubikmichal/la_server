@@ -45,11 +45,12 @@ exports["default"] = {
         id: "utesare",
         name: "U Tesaře",
         url: "http://www.utesare.cz/Menu.pdf"
-    },
-    utesareVIP: {
-        id: "utesareVIP",
-        name: "U Tesaře - V.I.P. menu",
-        url: "http://www.utesare.cz/Menu.pdf"
     }
+    // ,
+    // utesareVIP: {
+    // 	id: "utesareVIP",
+    // 	name: "U Tesaře - V.I.P. menu",
+    // 	url: "http://www.utesare.cz/Menu.pdf"
+    // }
 };
 //# sourceMappingURL=restaurants.js.map

@@ -44,15 +44,20 @@ export default class UTesare extends Base {
 			}
 
 			let mealIndex = meal.search(UTesare.REGEX_MEAL_INDEX);
+			let saladIndex = meal.search("Salát:");
 			let priceIndex = meal.search(UTesare.REGEX_PRICE);
 
-			if (mealIndex !== -1 && priceIndex !== -1) {
+			if ((mealIndex !== -1 || saladIndex !== -1) && priceIndex !== -1) {
 				meals.push({
 					name: this.normalizeName(meal.substr(0, priceIndex)),
 					price: meal.substr(priceIndex)
 				})
 
 				meal = "";
+			}
+
+			if (mealIndex === -1 && saladIndex === -1 && priceIndex === -1) {
+				break;
 			}
 		}
 
