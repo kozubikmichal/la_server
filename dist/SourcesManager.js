@@ -16,6 +16,7 @@ var MyFood_1 = require("./parsers/MyFood");
 var Spilberk_1 = require("./parsers/Spilberk");
 var Makalu_1 = require("./parsers/Makalu");
 var UTesare_1 = require("./parsers/UTesare");
+var UHovezihoPupku_1 = require("./parsers/UHovezihoPupku");
 var restaurants_1 = require("./data/restaurants");
 /**
  * Sources manager
@@ -65,6 +66,10 @@ var SourcesManager = (function () {
                 restaurant: restaurants_1["default"].makaluBrno,
                 menuUrl: "http://www.nepalska-restaurace-makalu.cz/index.php",
                 parser: new Makalu_1["default"]()
+            }, {
+                restaurant: restaurants_1["default"].uHovezihoPupku,
+                menuUrl: "http://www.uhovezihopupku.cz/menu/",
+                parser: new UHovezihoPupku_1["default"]()
             }];
     }
     /**

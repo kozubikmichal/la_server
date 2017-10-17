@@ -45,6 +45,11 @@ exports["default"] = {
         id: "utesare",
         name: "U Tesaře",
         url: "http://www.utesare.cz/Menu.pdf"
+    },
+    uHovezihoPupku: {
+        id: "uHovezihoPupku",
+        name: "U Hovězího pupku",
+        url: "http://www.uhovezihopupku.cz/menu/"
     }
     // ,
     // utesareVIP: {

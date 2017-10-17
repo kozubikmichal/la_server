@@ -11,6 +11,7 @@ import Spilberk from "./parsers/Spilberk";
 import Makalu from "./parsers/Makalu";
 import UTesare from "./parsers/UTesare";
 import UTesareVIP from "./parsers/UTesareVIP";
+import UHovezihoPupku from "./parsers/UHovezihoPupku";
 
 import restaurants from "./data/restaurants"
 
@@ -61,6 +62,10 @@ export default class SourcesManager implements ISourcesManager {
 		restaurant: restaurants.makaluBrno,
 		menuUrl: "http://www.nepalska-restaurace-makalu.cz/index.php",
 		parser: new Makalu()
+	}, {
+		restaurant: restaurants.uHovezihoPupku,
+		menuUrl: "http://www.uhovezihopupku.cz/menu/",
+		parser: new UHovezihoPupku()
 	}]
 
 	/**
