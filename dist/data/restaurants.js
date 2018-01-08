@@ -21,11 +21,6 @@ exports["default"] = {
         name: "Tusto Titanium",
         url: "http://titanium.tusto.cz/tydenni-menu/"
     },
-    spilberkCafe: {
-        id: "spilberkCafe",
-        name: "Spilberk Café",
-        url: "http://www.spielberkcafe.cz/denni_menu.html"
-    },
     kometaPubArena: {
         id: "kometaPubArena",
         name: "Kometa Pub Arena",
@@ -41,21 +36,10 @@ exports["default"] = {
         name: "Makalu",
         url: "http://www.nepalska-restaurace-makalu.cz/index.php"
     },
-    utesare: {
-        id: "utesare",
-        name: "U Tesaře",
-        url: "http://www.utesare.cz/Menu.pdf"
-    },
     uHovezihoPupku: {
         id: "uHovezihoPupku",
         name: "U Hovězího pupku",
         url: "http://www.uhovezihopupku.cz/menu/"
     }
-    // ,
-    // utesareVIP: {
-    // 	id: "utesareVIP",
-    // 	name: "U Tesaře - V.I.P. menu",
-    // 	url: "http://www.utesare.cz/Menu.pdf"
-    // }
 };
 //# sourceMappingURL=restaurants.js.map

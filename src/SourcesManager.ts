@@ -29,16 +29,6 @@ export default class SourcesManager implements ISourcesManager {
 		menuUrl: "http://iqrestaurant.cz/brno/getData.svc?type=brnoMenuHTML2",
 		parser: new IQ(true)
 	}, {
-		restaurant: restaurants.utesare,
-		menuUrl: "http://www.utesare.cz/Menu.pdf",
-		parser: new UTesare()
-	}
-		// , {
-		// 	restaurant: restaurants.utesareVIP,
-		// 	menuUrl: "http://www.utesare.cz/Menu.pdf",
-		// 	parser: new UTesareVIP()
-		// }
-		, {
 		restaurant: restaurants.myFoodHolandska,
 		menuUrl: "http://www.sklizeno.cz/o-nas/brno-holandska/",
 		parser: new MyFood()
@@ -50,10 +40,6 @@ export default class SourcesManager implements ISourcesManager {
 		restaurant: restaurants.kometaPubArena,
 		menuUrl: "http://arena.kometapub.cz/tydenni-menu.php",
 		parser: new Kometa()
-	}, {
-		restaurant: restaurants.spilberkCafe,
-		menuUrl: "http://www.spielberkcafe.cz/denni_menu.html",
-		parser: new Spilberk()
 	}, {
 		restaurant: restaurants.rebioHolandska,
 		menuUrl: "http://www.rebio.cz/Holandska/Nase-nabidka/dW-ei.folder.aspx",

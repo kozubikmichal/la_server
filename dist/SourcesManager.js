@@ -13,9 +13,7 @@ var Kometa_1 = require("./parsers/Kometa");
 var Tusto_1 = require("./parsers/Tusto");
 var Rebio_1 = require("./parsers/Rebio");
 var MyFood_1 = require("./parsers/MyFood");
-var Spilberk_1 = require("./parsers/Spilberk");
 var Makalu_1 = require("./parsers/Makalu");
-var UTesare_1 = require("./parsers/UTesare");
 var UHovezihoPupku_1 = require("./parsers/UHovezihoPupku");
 var restaurants_1 = require("./data/restaurants");
 /**
@@ -32,17 +30,6 @@ var SourcesManager = (function () {
                 menuUrl: "http://iqrestaurant.cz/brno/getData.svc?type=brnoMenuHTML2",
                 parser: new IQ_1["default"](true)
             }, {
-                restaurant: restaurants_1["default"].utesare,
-                menuUrl: "http://www.utesare.cz/Menu.pdf",
-                parser: new UTesare_1["default"]()
-            }
-            // , {
-            // 	restaurant: restaurants.utesareVIP,
-            // 	menuUrl: "http://www.utesare.cz/Menu.pdf",
-            // 	parser: new UTesareVIP()
-            // }
-            ,
-            {
                 restaurant: restaurants_1["default"].myFoodHolandska,
                 menuUrl: "http://www.sklizeno.cz/o-nas/brno-holandska/",
                 parser: new MyFood_1["default"]()
@@ -54,10 +41,6 @@ var SourcesManager = (function () {
                 restaurant: restaurants_1["default"].kometaPubArena,
                 menuUrl: "http://arena.kometapub.cz/tydenni-menu.php",
                 parser: new Kometa_1["default"]()
-            }, {
-                restaurant: restaurants_1["default"].spilberkCafe,
-                menuUrl: "http://www.spielberkcafe.cz/denni_menu.html",
-                parser: new Spilberk_1["default"]()
             }, {
                 restaurant: restaurants_1["default"].rebioHolandska,
                 menuUrl: "http://www.rebio.cz/Holandska/Nase-nabidka/dW-ei.folder.aspx",
