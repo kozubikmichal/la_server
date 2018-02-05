@@ -17,6 +17,9 @@ var Rebio = (function () {
         date.setDate(date.getDate() + (day - date.getDay()));
         var id = date.getDate() + "." + (date.getMonth() + 1) + "." + date.getFullYear();
         var dayHeader = dom.window.document.querySelector("h3[id='" + id + "']");
+        if (!dayHeader) {
+            dayHeader = dom.window.document.querySelector("h3[id='" + date.getDate() + ". " + (date.getMonth() + 1) + ". " + date.getFullYear() + "']");
+        }
         return Promise.resolve([{
                 meals: this.getMeals(dayHeader)
             }]);

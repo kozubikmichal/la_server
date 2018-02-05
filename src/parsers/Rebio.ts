@@ -20,6 +20,10 @@ export default class Rebio implements IParser {
 		let id = `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
 		let dayHeader = dom.window.document.querySelector(`h3[id='${id}']`);
 
+		if (!dayHeader) {
+			dayHeader = dom.window.document.querySelector(`h3[id='${date.getDate()}. ${date.getMonth() + 1}. ${date.getFullYear()}']`);
+		}
+
 		return Promise.resolve([{
 			meals: this.getMeals(dayHeader)
 		}]);
