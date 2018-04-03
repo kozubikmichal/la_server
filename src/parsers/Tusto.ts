@@ -11,15 +11,31 @@ export default class Tusto implements IParser {
 	 * Parses menu for the given day
 	 *
 	 * @param dom dom parser
-	 * @param day day number
 	 */
-	public parseDay(dom: jsdom.JSDOM, day: number) {
-		let menu = dom.window.document.querySelectorAll(`table.menu`).item(day - 1);
+	public parseDay(dom: jsdom.JSDOM) {
+		let index = this.getDayIndex(dom);
+		let menu = dom.window.document.querySelectorAll(`table.menu`).item(index);
 		let dayData = menu.children.item(0);
 
 		return Promise.resolve([{
 			meals: this.processMenuList(dayData)
 		}]);
+	}
+
+	private getDayIndex(dom: jsdom.JSDOM): number {
+		let now = new Date();
+		let regex = new RegExp(`\\w\\s${now.getDate()}\.${now.getMonth() + 1}\.`);
+		let dates = dom.window.document.querySelectorAll("table.menu > tbody > tr:first-child > td:first-child");
+		let dayIndex = 0;
+
+		for (let i = 0; i < dates.length; ++i) {
+			if (dates.item(i).textContent.search(regex) > -1) {
+				dayIndex = i;
+				break;
+			}
+		}
+
+		return dayIndex;
 	}
 
 	private processMenuList(list: Element): IMeal[] {

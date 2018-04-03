@@ -37,7 +37,6 @@ export default class IQ implements IParser {
 
 		for (let i = 0; i < dates.length; ++i) {
 			if (dates.item(i).children[0].textContent === date) {
-				console.log("TADAAA");
 				dateIndex = i;
 				break;
 			}

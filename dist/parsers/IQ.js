@@ -33,7 +33,6 @@ var IQ = (function () {
         var dateIndex = 0;
         for (var i = 0; i < dates.length; ++i) {
             if (dates.item(i).children[0].textContent === date) {
-                console.log("TADAAA");
                 dateIndex = i;
                 break;
             }

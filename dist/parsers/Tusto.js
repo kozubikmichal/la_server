@@ -10,14 +10,27 @@ var Tusto = (function () {
      * Parses menu for the given day
      *
      * @param dom dom parser
-     * @param day day number
      */
-    Tusto.prototype.parseDay = function (dom, day) {
-        var menu = dom.window.document.querySelectorAll("table.menu").item(day - 1);
+    Tusto.prototype.parseDay = function (dom) {
+        var index = this.getDayIndex(dom);
+        var menu = dom.window.document.querySelectorAll("table.menu").item(index);
         var dayData = menu.children.item(0);
         return Promise.resolve([{
                 meals: this.processMenuList(dayData)
             }]);
+    };
+    Tusto.prototype.getDayIndex = function (dom) {
+        var now = new Date();
+        var regex = new RegExp("\\w\\s" + now.getDate() + "." + (now.getMonth() + 1) + ".");
+        var dates = dom.window.document.querySelectorAll("table.menu > tbody > tr:first-child > td:first-child");
+        var dayIndex = 0;
+        for (var i = 0; i < dates.length; ++i) {
+            if (dates.item(i).textContent.search(regex) > -1) {
+                dayIndex = i;
+                break;
+            }
+        }
+        return dayIndex;
     };
     Tusto.prototype.processMenuList = function (list) {
         var meals = [];
