@@ -20,14 +20,30 @@ export default class IQ implements IParser {
 	 * @param dom dom parser
 	 * @param day day number
 	 */
-	public parseDay(dom: jsdom.JSDOM, day: number) {
+	public parseDay(dom: jsdom.JSDOM) {
 		let days = dom.window.document.querySelectorAll("dl.menuDayItems");
-		let itemIndex = this.isWeek ? ((day - 1) * 2 + 1) : ((day - 1) * 2);
+		let itemIndex = this.isWeek ? (days.length - 1) : this.getDayIndex(dom);
 		let data = days.item(itemIndex);
 
 		return Promise.resolve([{
 			meals: this.processMenuList(data)
 		}]);
+	}
+
+	private getDayIndex(dom: jsdom.JSDOM): number {
+		let date = String((new Date()).getDate());
+		let dates = dom.window.document.querySelectorAll("div.date");
+		let dateIndex = 0;
+
+		for (let i = 0; i < dates.length; ++i) {
+			if (dates.item(i).children[0].textContent === date) {
+				console.log("TADAAA");
+				dateIndex = i;
+				break;
+			}
+		}
+
+		return dateIndex * 2;
 	}
 
 	private processMenuList(list: Element): IMeal[] {

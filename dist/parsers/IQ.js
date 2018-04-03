@@ -19,13 +19,26 @@ var IQ = (function () {
      * @param dom dom parser
      * @param day day number
      */
-    IQ.prototype.parseDay = function (dom, day) {
+    IQ.prototype.parseDay = function (dom) {
         var days = dom.window.document.querySelectorAll("dl.menuDayItems");
-        var itemIndex = this.isWeek ? ((day - 1) * 2 + 1) : ((day - 1) * 2);
+        var itemIndex = this.isWeek ? (days.length - 1) : this.getDayIndex(dom);
         var data = days.item(itemIndex);
         return Promise.resolve([{
                 meals: this.processMenuList(data)
             }]);
+    };
+    IQ.prototype.getDayIndex = function (dom) {
+        var date = String((new Date()).getDate());
+        var dates = dom.window.document.querySelectorAll("div.date");
+        var dateIndex = 0;
+        for (var i = 0; i < dates.length; ++i) {
+            if (dates.item(i).children[0].textContent === date) {
+                console.log("TADAAA");
+                dateIndex = i;
+                break;
+            }
+        }
+        return dateIndex * 2;
     };
     IQ.prototype.processMenuList = function (list) {
         var meals = [];
