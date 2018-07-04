@@ -18,7 +18,8 @@
     "express": "^4.15.3",
     "jsdom": "^11.1.0",
     "pdf2json": "^1.1.7",
-    "pdfreader": "^0.2.4"
+    "pdfreader": "^0.2.4",
+    "typescript-ioc": "^1.2.4"
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
@@ -27,7 +28,6 @@
     "@types/mocha": "^2.2.41",
     "mocha": "^3.4.2",
     "ts-node": "^3.2.0",
-    "typescript": "^2.4.1",
-    "typescript-ioc": "^0.4.2"
+    "typescript": "^2.4.1"
   }
 }
