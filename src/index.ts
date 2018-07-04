@@ -7,7 +7,7 @@ IoCConfig.configure();
 
 let port = Number(process.env.PORT) || 3333;
 
-console.log("start");
+console.log(`starting at port ${port}`);
 
 let server = Container.get(Server)
 server.start(port);

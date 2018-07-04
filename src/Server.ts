@@ -40,6 +40,14 @@ export default class Server {
 	 */
 	public start(port: number) {
 		this.app.listen(port);
+		this.app.use((error, req, res, next) => {
+			console.log(req.url);
+			next();
+		})
+		this.app.use((req, res, next) => {
+			console.log(req.url);
+			next();
+		})
 		console.log("done");
 	}
 
