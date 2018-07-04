@@ -24,7 +24,7 @@ var http = require("http");
 /**
  * Request wrapper
  */
-var Request = (function (_super) {
+var Request = /** @class */ (function (_super) {
     __extends(Request, _super);
     function Request() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -77,10 +77,10 @@ var Request = (function (_super) {
             });
         });
     };
+    Request = __decorate([
+        typescript_ioc_1.Provides(IRequest_1["default"])
+    ], Request);
     return Request;
 }(IRequest_1["default"]));
-Request = __decorate([
-    typescript_ioc_1.Provides(IRequest_1["default"])
-], Request);
 exports["default"] = Request;
 //# sourceMappingURL=Request.js.map

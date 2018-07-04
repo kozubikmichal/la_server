@@ -3,7 +3,7 @@ exports.__esModule = true;
 /**
  * Tusto restaurant menu parser
  */
-var Tusto = (function () {
+var Tusto = /** @class */ (function () {
     function Tusto() {
     }
     /**

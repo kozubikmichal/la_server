@@ -17,7 +17,7 @@ var FILE_PATH = "./utesare.pdf";
 /**
  * U Tesare restaurant menu parser
  */
-var UTesare = (function () {
+var UTesare = /** @class */ (function () {
     function UTesare() {
     }
     /**
@@ -61,21 +61,21 @@ var UTesare = (function () {
     UTesare.prototype.normalizePrice = function (price) {
         return price.replace(/ .+$/, ",-");
     };
+    UTesare.REGEX_PRICE = /\d+,-$/;
+    UTesare.REGEX_MEAL_INDEX = /^\d+\./;
+    UTesare.DAY_SEPARATOR = [
+        "PONDĚLÍ",
+        "ÚTERÝ",
+        "STŘEDA",
+        "ČTVRTEK",
+        "PÁTEK",
+        "Doba "
+    ];
+    __decorate([
+        typescript_ioc_1.Inject,
+        __metadata("design:type", IRequest_1["default"])
+    ], UTesare.prototype, "request");
     return UTesare;
 }());
-UTesare.REGEX_PRICE = /\d+,-$/;
-UTesare.REGEX_MEAL_INDEX = /^\d+\./;
-UTesare.DAY_SEPARATOR = [
-    "PONDĚLÍ",
-    "ÚTERÝ",
-    "STŘEDA",
-    "ČTVRTEK",
-    "PÁTEK",
-    "Doba "
-];
-__decorate([
-    typescript_ioc_1.Inject,
-    __metadata("design:type", IRequest_1["default"])
-], UTesare.prototype, "request");
 exports["default"] = UTesare;
 //# sourceMappingURL=UTesareBase.js.map

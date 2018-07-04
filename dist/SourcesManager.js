@@ -19,7 +19,7 @@ var restaurants_1 = require("./data/restaurants");
 /**
  * Sources manager
  */
-var SourcesManager = (function () {
+var SourcesManager = /** @class */ (function () {
     function SourcesManager() {
         this.sources = [{
                 restaurant: restaurants_1["default"].iqHolandska,
@@ -70,10 +70,10 @@ var SourcesManager = (function () {
             return source.restaurant.id === restaurantId;
         })[0];
     };
+    SourcesManager = __decorate([
+        typescript_ioc_1.Provides(ISourcesManager_1["default"])
+    ], SourcesManager);
     return SourcesManager;
 }());
-SourcesManager = __decorate([
-    typescript_ioc_1.Provides(ISourcesManager_1["default"])
-], SourcesManager);
 exports["default"] = SourcesManager;
 //# sourceMappingURL=SourcesManager.js.map

@@ -21,7 +21,7 @@ var JSDOM = jsdom.JSDOM;
 /**
  * Provides menu for the restaurants
  */
-var MenuProvider = (function () {
+var MenuProvider = /** @class */ (function () {
     function MenuProvider(sourcesManager, request) {
         this.sourcesManager = sourcesManager;
         this.request = request;
@@ -51,7 +51,11 @@ var MenuProvider = (function () {
                 restaurant: {
                     id: "",
                     name: "unknown",
-                    url: ""
+                    url: "",
+                    position: {
+                        lat: "",
+                        lng: ""
+                    }
                 },
                 menus: []
             });
@@ -72,14 +76,14 @@ var MenuProvider = (function () {
     MenuProvider.prototype.parseMenuToday = function (url, parser) {
         return this.parseMenu(url, parser, (new Date()).getDay());
     };
+    MenuProvider = __decorate([
+        typescript_ioc_1.Provides(IMenuProvider_1["default"]),
+        __param(0, typescript_ioc_1.Inject),
+        __param(1, typescript_ioc_1.Inject),
+        __metadata("design:paramtypes", [ISourcesManager_1["default"],
+            IRequest_1["default"]])
+    ], MenuProvider);
     return MenuProvider;
 }());
-MenuProvider = __decorate([
-    typescript_ioc_1.Provides(IMenuProvider_1["default"]),
-    __param(0, typescript_ioc_1.Inject),
-    __param(1, typescript_ioc_1.Inject),
-    __metadata("design:paramtypes", [ISourcesManager_1["default"],
-        IRequest_1["default"]])
-], MenuProvider);
 exports["default"] = MenuProvider;
 //# sourceMappingURL=MenuProvider.js.map

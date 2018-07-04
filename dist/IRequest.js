@@ -3,7 +3,7 @@ exports.__esModule = true;
 /**
  * Request wrapper
  */
-var IRequest = (function () {
+var IRequest = /** @class */ (function () {
     function IRequest() {
     }
     return IRequest;

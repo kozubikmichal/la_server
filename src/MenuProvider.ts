@@ -49,7 +49,11 @@ export default class MenuProvider implements IMenuProvider {
 				restaurant: {
 					id: "",
 					name: "unknown",
-					url: ""
+					url: "",
+					position: {
+						lat: "",
+						lng: ""
+					}
 				},
 				menus: []
 			});

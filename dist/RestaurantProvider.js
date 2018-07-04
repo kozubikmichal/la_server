@@ -22,7 +22,7 @@ var restaurants_1 = require("./data/restaurants");
 /**
  * Restaurant provider
  */
-var RestaurantProvider = (function (_super) {
+var RestaurantProvider = /** @class */ (function (_super) {
     __extends(RestaurantProvider, _super);
     function RestaurantProvider() {
         return _super !== null && _super.apply(this, arguments) || this;
@@ -35,10 +35,10 @@ var RestaurantProvider = (function (_super) {
             return restaurants_1["default"][key];
         }));
     };
+    RestaurantProvider = __decorate([
+        typescript_ioc_1.Provides(IRestaurantProvider_1["default"])
+    ], RestaurantProvider);
     return RestaurantProvider;
 }(IRestaurantProvider_1["default"]));
-RestaurantProvider = __decorate([
-    typescript_ioc_1.Provides(IRestaurantProvider_1["default"])
-], RestaurantProvider);
 exports["default"] = RestaurantProvider;
 //# sourceMappingURL=RestaurantProvider.js.map

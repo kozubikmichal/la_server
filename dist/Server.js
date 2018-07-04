@@ -29,7 +29,7 @@ var ROUTES = {
 /**
  * Server
  */
-var Server = (function () {
+var Server = /** @class */ (function () {
     function Server(menuProvider, restaurantProvider) {
         this.menuProvider = menuProvider;
         this.restaurantProvider = restaurantProvider;
@@ -87,13 +87,13 @@ var Server = (function () {
             res.sendFile(file);
         });
     };
+    Server = __decorate([
+        __param(0, typescript_ioc_1.Inject),
+        __param(1, typescript_ioc_1.Inject),
+        __metadata("design:paramtypes", [IMenuProvider_1["default"],
+            IRestaurantProvider_1["default"]])
+    ], Server);
     return Server;
 }());
-Server = __decorate([
-    __param(0, typescript_ioc_1.Inject),
-    __param(1, typescript_ioc_1.Inject),
-    __metadata("design:paramtypes", [IMenuProvider_1["default"],
-        IRestaurantProvider_1["default"]])
-], Server);
 exports["default"] = Server;
 //# sourceMappingURL=Server.js.map

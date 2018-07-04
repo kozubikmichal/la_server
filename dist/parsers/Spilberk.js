@@ -12,7 +12,7 @@ var MENU_PRICE_PARAGRAPH_END = "K menu:";
 /**
  * Spilberk restaurant menu parser
  */
-var Spilberk = (function () {
+var Spilberk = /** @class */ (function () {
     function Spilberk() {
     }
     /**

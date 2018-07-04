@@ -9,7 +9,7 @@ var ISourcesManager_1 = require("./ISourcesManager");
 var SourcesManager_1 = require("./SourcesManager");
 var IRequest_1 = require("./IRequest");
 var Request_1 = require("./Request");
-var Configuration = (function () {
+var Configuration = /** @class */ (function () {
     function Configuration() {
     }
     Configuration.configure = function () {
