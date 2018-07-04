@@ -5,7 +5,7 @@ import Server from "./Server";
 
 IoCConfig.configure();
 
-let port = Number(process.env.PORT) || 3333;
+let port = Number(process.env.PORT) || 8080;
 
 console.log(`starting at port ${port}`);
 
