@@ -3,7 +3,7 @@ exports.__esModule = true;
 /**
  * U Hoveziho pupku restaurant menu parser
  */
-var UHovezihoPupku = /** @class */ (function () {
+var UHovezihoPupku = (function () {
     function UHovezihoPupku() {
     }
     /**

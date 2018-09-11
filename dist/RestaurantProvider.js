@@ -22,7 +22,7 @@ var restaurants_1 = require("./data/restaurants");
 /**
  * Restaurant provider
  */
-var RestaurantProvider = /** @class */ (function (_super) {
+var RestaurantProvider = (function (_super) {
     __extends(RestaurantProvider, _super);
     function RestaurantProvider() {
         return _super !== null && _super.apply(this, arguments) || this;

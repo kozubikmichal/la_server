@@ -1,6 +1,6 @@
 "use strict";
 exports.__esModule = true;
-var Constants = /** @class */ (function () {
+var Constants = (function () {
     function Constants() {
     }
     Constants.ProxyHost = "proxy.wdf.sap.corp";

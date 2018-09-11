@@ -17,7 +17,7 @@ var FILE_PATH = "./utesare.pdf";
 /**
  * U Tesare restaurant menu parser
  */
-var UTesare = /** @class */ (function () {
+var UTesare = (function () {
     function UTesare() {
     }
     /**

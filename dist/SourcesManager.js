@@ -19,7 +19,7 @@ var restaurants_1 = require("./data/restaurants");
 /**
  * Sources manager
  */
-var SourcesManager = /** @class */ (function () {
+var SourcesManager = (function () {
     function SourcesManager() {
         this.sources = [{
                 restaurant: restaurants_1["default"].iqHolandska,

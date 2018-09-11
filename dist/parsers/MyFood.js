@@ -3,7 +3,7 @@ exports.__esModule = true;
 /**
  * MyFood restaurant menu parser
  */
-var MyFood = /** @class */ (function () {
+var MyFood = (function () {
     function MyFood() {
     }
     /**

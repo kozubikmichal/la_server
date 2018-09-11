@@ -16,6 +16,7 @@ const { JSDOM } = jsdom;
  * Provides menu for the restaurants
  */
 @Provides(IMenuProvider)
+
 export default class MenuProvider implements IMenuProvider {
 	constructor(
 		@Inject private sourcesManager?: ISourcesManager,
@@ -33,8 +34,10 @@ export default class MenuProvider implements IMenuProvider {
 						restaurant: source.restaurant,
 						menus: menus
 					}
+				}).catch(() => {
+					return null;
 				})
-			})
+			}).filter(Boolean)
 		)
 	}
 

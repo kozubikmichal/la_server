@@ -3,7 +3,7 @@ exports.__esModule = true;
 /**
  * Sources manager
  */
-var ISourcesManager = /** @class */ (function () {
+var ISourcesManager = (function () {
     function ISourcesManager() {
     }
     return ISourcesManager;

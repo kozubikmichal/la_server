@@ -3,7 +3,7 @@ exports.__esModule = true;
 /**
  * Tusto restaurant menu parser
  */
-var Tusto = /** @class */ (function () {
+var Tusto = (function () {
     function Tusto() {
     }
     /**
@@ -21,7 +21,7 @@ var Tusto = /** @class */ (function () {
     };
     Tusto.prototype.getDayIndex = function (dom) {
         var now = new Date();
-        var regex = new RegExp("\\w\\s" + now.getDate() + "." + (now.getMonth() + 1) + ".");
+        var regex = new RegExp("\\s" + now.getDate() + "." + (now.getMonth() + 1) + ".");
         var dates = dom.window.document.querySelectorAll("table.menu > tbody > tr:first-child > td:first-child");
         var dayIndex = 0;
         for (var i = 0; i < dates.length; ++i) {

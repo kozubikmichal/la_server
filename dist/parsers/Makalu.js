@@ -3,7 +3,7 @@ exports.__esModule = true;
 /**
  * Makalu restaurant menu parser
  */
-var Makalu = /** @class */ (function () {
+var Makalu = (function () {
     function Makalu() {
     }
     /**

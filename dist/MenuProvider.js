@@ -21,7 +21,7 @@ var JSDOM = jsdom.JSDOM;
 /**
  * Provides menu for the restaurants
  */
-var MenuProvider = /** @class */ (function () {
+var MenuProvider = (function () {
     function MenuProvider(sourcesManager, request) {
         this.sourcesManager = sourcesManager;
         this.request = request;
@@ -37,8 +37,10 @@ var MenuProvider = /** @class */ (function () {
                     restaurant: source.restaurant,
                     menus: menus
                 };
+            })["catch"](function () {
+                return null;
             });
-        }));
+        }).filter(Boolean));
     };
     /**
      * Gets today menu for one restaurant

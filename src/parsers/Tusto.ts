@@ -24,7 +24,7 @@ export default class Tusto implements IParser {
 
 	private getDayIndex(dom: jsdom.JSDOM): number {
 		let now = new Date();
-		let regex = new RegExp(`\\w\\s${now.getDate()}\.${now.getMonth() + 1}\.`);
+		let regex = new RegExp(`\\s${now.getDate()}\.${now.getMonth() + 1}\.`);
 		let dates = dom.window.document.querySelectorAll("table.menu > tbody > tr:first-child > td:first-child");
 		let dayIndex = 0;
 

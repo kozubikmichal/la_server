@@ -3,7 +3,7 @@ exports.__esModule = true;
 /**
  * IQ restaurant menu parser
  */
-var IQ = /** @class */ (function () {
+var IQ = (function () {
     /**
      * Constructor
      *

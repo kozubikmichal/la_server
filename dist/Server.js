@@ -29,7 +29,7 @@ var ROUTES = {
 /**
  * Server
  */
-var Server = /** @class */ (function () {
+var Server = (function () {
     function Server(menuProvider, restaurantProvider) {
         this.menuProvider = menuProvider;
         this.restaurantProvider = restaurantProvider;
@@ -47,6 +47,14 @@ var Server = /** @class */ (function () {
      */
     Server.prototype.start = function (port) {
         this.app.listen(port);
+        this.app.use(function (error, req, res, next) {
+            console.log(req.url);
+            next();
+        });
+        this.app.use(function (req, res, next) {
+            console.log(req.url);
+            next();
+        });
         console.log("done");
     };
     Server.prototype.registerRoutes = function () {

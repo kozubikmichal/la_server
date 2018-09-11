@@ -14,7 +14,7 @@ var UTesareBase_1 = require("./UTesareBase");
 /**
  * U Tesare restaurant menu parser
  */
-var UTesareVIP = /** @class */ (function (_super) {
+var UTesareVIP = (function (_super) {
     __extends(UTesareVIP, _super);
     function UTesareVIP() {
         return _super !== null && _super.apply(this, arguments) || this;

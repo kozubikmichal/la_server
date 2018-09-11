@@ -24,7 +24,7 @@ var http = require("http");
 /**
  * Request wrapper
  */
-var Request = /** @class */ (function (_super) {
+var Request = (function (_super) {
     __extends(Request, _super);
     function Request() {
         return _super !== null && _super.apply(this, arguments) || this;

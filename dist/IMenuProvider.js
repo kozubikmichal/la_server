@@ -3,7 +3,7 @@ exports.__esModule = true;
 /**
  * Provides menu for the restaurants
  */
-var IMenuProvider = /** @class */ (function () {
+var IMenuProvider = (function () {
     function IMenuProvider() {
     }
     return IMenuProvider;
