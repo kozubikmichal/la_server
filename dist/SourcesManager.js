@@ -8,14 +8,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 exports.__esModule = true;
 var typescript_ioc_1 = require("typescript-ioc");
 var ISourcesManager_1 = require("./ISourcesManager");
-var IQ_1 = require("./parsers/IQ");
 var Kometa_1 = require("./parsers/Kometa");
 var Tusto_1 = require("./parsers/Tusto");
 var Rebio_1 = require("./parsers/Rebio");
 var MyFood_1 = require("./parsers/MyFood");
 var Makalu_1 = require("./parsers/Makalu");
 var UHovezihoPupku_1 = require("./parsers/UHovezihoPupku");
+var Eatology_1 = require("./pdfProviders/Eatology");
 var restaurants_1 = require("./data/restaurants");
+var IMenu_1 = require("./IMenu");
+var SinglePage_1 = require("./pdfProviders/SinglePage");
 /**
  * Sources manager
  */
@@ -24,35 +26,43 @@ var SourcesManager = (function () {
         this.sources = [{
                 restaurant: restaurants_1["default"].iqHolandska,
                 menuUrl: "http://iqrestaurant.cz/brno/getData.svc?type=brnoMenuHTML2",
-                parser: new IQ_1["default"]()
-            }, {
-                restaurant: restaurants_1["default"].iqHolandskaWeek,
-                menuUrl: "http://iqrestaurant.cz/brno/getData.svc?type=brnoMenuHTML2",
-                parser: new IQ_1["default"](true)
+                type: IMenu_1.MenuType.PDF,
+                pdfInfoProvider: new Eatology_1["default"](restaurants_1["default"].iqHolandska)
             }, {
                 restaurant: restaurants_1["default"].myFoodHolandska,
                 menuUrl: "http://www.sklizeno.cz/o-nas/brno-holandska/",
+                type: IMenu_1.MenuType.Standard,
                 parser: new MyFood_1["default"]()
             }, {
                 restaurant: restaurants_1["default"].tustoTitanium,
                 menuUrl: "http://titanium.tusto.cz/tydenni-menu/",
+                type: IMenu_1.MenuType.Standard,
                 parser: new Tusto_1["default"]()
             }, {
                 restaurant: restaurants_1["default"].kometaPubArena,
                 menuUrl: "http://arena.kometapub.cz/tydenni-menu.php",
+                type: IMenu_1.MenuType.Standard,
                 parser: new Kometa_1["default"]()
             }, {
                 restaurant: restaurants_1["default"].rebioHolandska,
                 menuUrl: "http://www.rebio.cz/Holandska/Nase-nabidka/dW-ei.folder.aspx",
+                type: IMenu_1.MenuType.Standard,
                 parser: new Rebio_1["default"]()
             }, {
                 restaurant: restaurants_1["default"].makaluBrno,
                 menuUrl: "http://www.nepalska-restaurace-makalu.cz/index.php",
+                type: IMenu_1.MenuType.Standard,
                 parser: new Makalu_1["default"]()
             }, {
                 restaurant: restaurants_1["default"].uHovezihoPupku,
                 menuUrl: "http://www.uhovezihopupku.cz/menu/",
+                type: IMenu_1.MenuType.Standard,
                 parser: new UHovezihoPupku_1["default"]()
+            }, {
+                restaurant: restaurants_1["default"].uTesare,
+                menuUrl: "http://www.utesare.cz/Menu.pdf",
+                type: IMenu_1.MenuType.PDF,
+                pdfInfoProvider: new SinglePage_1["default"](restaurants_1["default"].uTesare)
             }];
     }
     /**

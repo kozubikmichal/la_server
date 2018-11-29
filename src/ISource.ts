@@ -1,5 +1,6 @@
 import IParser from "./parsers/IParser";
-import { IRestaurant } from "./IMenu";
+import { IRestaurant, MenuType } from "./IMenu";
+import IPDFInfoProvider from "./pdfProviders/IPDFInfoProvider";
 
 /**
  * Data source
@@ -7,7 +8,9 @@ import { IRestaurant } from "./IMenu";
 interface ISource {
 	restaurant: IRestaurant;
 	menuUrl: string;
-	parser: IParser
+	type: MenuType;
+	parser?: IParser;
+	pdfInfoProvider?: IPDFInfoProvider;
 }
 
 export default ISource;

@@ -2,21 +2,12 @@
 exports.__esModule = true;
 exports["default"] = {
     iqHolandska: {
-        id: "iqHolandska",
-        name: "IQ Holandská",
+        id: "eatologyHolandska",
+        name: "Eatology (IQ Holandská)",
         url: "http://iqrestaurant.cz/brno/menu.html",
         position: {
             lat: "49.181198",
             lng: "16.605766"
-        }
-    },
-    iqHolandskaWeek: {
-        id: "iqHolandskaWeek",
-        name: "IQ Holandská (Týdenní nabídka)",
-        url: "http://iqrestaurant.cz/brno/menu.html",
-        position: {
-            lat: "49.180632",
-            lng: "16.605721"
         }
     },
     myFoodHolandska: {
@@ -71,6 +62,15 @@ exports["default"] = {
         position: {
             lat: "49.180123",
             lng: "16.595575"
+        }
+    },
+    uTesare: {
+        id: "uTesare",
+        name: "Hostinec u Tesaře",
+        url: "http://www.utesare.cz/Menu.pdf",
+        position: {
+            lat: "49.1813984",
+            lng: "16.5971371"
         }
     }
 };

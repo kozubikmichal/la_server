@@ -1,5 +1,5 @@
 import { Inject, Provides } from "typescript-ioc"
-import { IMenuSection } from "./IMenu";
+import { IMenuSection, MenuType } from "./IMenu";
 
 import IParser from "./parsers/IParser";
 import IMenu from "./IMenu";
@@ -58,15 +58,32 @@ export default class MenuProvider implements IMenuProvider {
 						lng: ""
 					}
 				},
-				menus: []
+				menus: [],
+				type: MenuType.Standard
 			});
 		}
-		return this.parseMenuToday(source.menuUrl, source.parser).then((menus) => {
-			return {
-				restaurant: source.restaurant,
-				menus: menus
+
+		switch (source.type) {
+			case MenuType.PDF: {
+				return source.pdfInfoProvider.getDayInfo(this.getTodayDay()).then((info) => {
+					return {
+						restaurant: source.restaurant,
+						menus: [],
+						type: MenuType.PDF,
+						pdfInfo: info
+					}
+				})
 			}
-		});
+			default: {
+				return this.parseMenuToday(source.menuUrl, source.parser).then((menus) => {
+					return {
+						restaurant: source.restaurant,
+						menus: menus,
+						type: MenuType.Standard
+					}
+				});
+			}
+		}
 	}
 
 	private parseMenu(url: string, parser: IParser, day: number): Promise<IMenuSection[]> {
@@ -77,6 +94,10 @@ export default class MenuProvider implements IMenuProvider {
 	}
 
 	private parseMenuToday(url: string, parser: IParser): Promise<IMenuSection[]> {
-		return this.parseMenu(url, parser, (new Date()).getDay());
+		return this.parseMenu(url, parser, this.getTodayDay());
+	}
+
+	private getTodayDay(): number {
+		return new Date().getDay();
 	}
 }

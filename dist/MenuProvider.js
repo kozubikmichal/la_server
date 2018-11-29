@@ -13,6 +13,7 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 exports.__esModule = true;
 var typescript_ioc_1 = require("typescript-ioc");
+var IMenu_1 = require("./IMenu");
 var IMenuProvider_1 = require("./IMenuProvider");
 var ISourcesManager_1 = require("./ISourcesManager");
 var IRequest_1 = require("./IRequest");
@@ -59,15 +60,31 @@ var MenuProvider = (function () {
                         lng: ""
                     }
                 },
-                menus: []
+                menus: [],
+                type: IMenu_1.MenuType.Standard
             });
         }
-        return this.parseMenuToday(source.menuUrl, source.parser).then(function (menus) {
-            return {
-                restaurant: source.restaurant,
-                menus: menus
-            };
-        });
+        switch (source.type) {
+            case IMenu_1.MenuType.PDF: {
+                return source.pdfInfoProvider.getDayInfo(this.getTodayDay()).then(function (info) {
+                    return {
+                        restaurant: source.restaurant,
+                        menus: [],
+                        type: IMenu_1.MenuType.PDF,
+                        pdfInfo: info
+                    };
+                });
+            }
+            default: {
+                return this.parseMenuToday(source.menuUrl, source.parser).then(function (menus) {
+                    return {
+                        restaurant: source.restaurant,
+                        menus: menus,
+                        type: IMenu_1.MenuType.Standard
+                    };
+                });
+            }
+        }
     };
     MenuProvider.prototype.parseMenu = function (url, parser, day) {
         return this.request.get(url).then(function (data) {
@@ -76,7 +93,10 @@ var MenuProvider = (function () {
         });
     };
     MenuProvider.prototype.parseMenuToday = function (url, parser) {
-        return this.parseMenu(url, parser, (new Date()).getDay());
+        return this.parseMenu(url, parser, this.getTodayDay());
+    };
+    MenuProvider.prototype.getTodayDay = function () {
+        return new Date().getDay();
     };
     MenuProvider = __decorate([
         typescript_ioc_1.Provides(IMenuProvider_1["default"]),
