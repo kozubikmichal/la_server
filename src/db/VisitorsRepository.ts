@@ -27,7 +27,7 @@ export default class VisitorsRepository extends IVisitorsRepository {
 		if (affected === 0) {
 			return this.dao.run(`
 				INSERT INTO ${TableName} (datetime, count) VALUES (?, ?)
-			`, [datetime, 0])
+			`, [datetime, 1])
 		}
 	}
 

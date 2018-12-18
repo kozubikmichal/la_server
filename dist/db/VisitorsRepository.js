@@ -84,7 +84,7 @@ var VisitorsRepository = /** @class */ (function (_super) {
                     case 1:
                         affected = _a.sent();
                         if (affected === 0) {
-                            return [2 /*return*/, this.dao.run("\n\t\t\t\tINSERT INTO " + TableName + " (datetime, count) VALUES (?, ?)\n\t\t\t", [datetime, 0])];
+                            return [2 /*return*/, this.dao.run("\n\t\t\t\tINSERT INTO " + TableName + " (datetime, count) VALUES (?, ?)\n\t\t\t", [datetime, 1])];
                         }
                         return [2 /*return*/];
                 }
