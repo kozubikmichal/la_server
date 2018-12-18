@@ -24,7 +24,7 @@ var Configuration = /** @class */ (function () {
         typescript_ioc_1.Container.bind(IVisitorsRepository_1["default"]).to(VisitorsRepository_1["default"]);
         typescript_ioc_1.Container.bind(IDAO_1["default"]).provider({
             get: function () {
-                return new AppDAO_1["default"]("./database.sqlite3");
+                return new AppDAO_1["default"](process.env.DB_PATH || "./database.sqlite3");
             }
         }).scope(typescript_ioc_1.Scope.Singleton);
     };

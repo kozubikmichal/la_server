@@ -26,7 +26,7 @@ export default class Configuration {
 
 		Container.bind(IDAO).provider({
 			get: () => {
-				return new AppDAO("./database.sqlite3")
+				return new AppDAO(process.env.DB_PATH || "./database.sqlite3")
 			}
 		}).scope(Scope.Singleton);
 	}
