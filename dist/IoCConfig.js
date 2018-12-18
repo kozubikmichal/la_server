@@ -9,7 +9,11 @@ var ISourcesManager_1 = require("./ISourcesManager");
 var SourcesManager_1 = require("./SourcesManager");
 var IRequest_1 = require("./IRequest");
 var Request_1 = require("./Request");
-var Configuration = (function () {
+var IVisitorsRepository_1 = require("./db/IVisitorsRepository");
+var VisitorsRepository_1 = require("./db/VisitorsRepository");
+var IDAO_1 = require("./db/IDAO");
+var AppDAO_1 = require("./db/AppDAO");
+var Configuration = /** @class */ (function () {
     function Configuration() {
     }
     Configuration.configure = function () {
@@ -17,6 +21,12 @@ var Configuration = (function () {
         typescript_ioc_1.Container.bind(ISourcesManager_1["default"]).to(SourcesManager_1["default"]);
         typescript_ioc_1.Container.bind(IRequest_1["default"]).to(Request_1["default"]);
         typescript_ioc_1.Container.bind(IRestaurantProvider_1["default"]).to(RestaurantProvider_1["default"]);
+        typescript_ioc_1.Container.bind(IVisitorsRepository_1["default"]).to(VisitorsRepository_1["default"]);
+        typescript_ioc_1.Container.bind(IDAO_1["default"]).provider({
+            get: function () {
+                return new AppDAO_1["default"]("./database.sqlite3");
+            }
+        }).scope(typescript_ioc_1.Scope.Singleton);
     };
     return Configuration;
 }());

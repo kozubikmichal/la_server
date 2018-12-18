@@ -18,6 +18,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -54,33 +57,61 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
+var IVisitorsRepository_1 = require("./IVisitorsRepository");
 var typescript_ioc_1 = require("typescript-ioc");
-var IPDFInfoProvider_1 = require("./IPDFInfoProvider");
-/**
- * Restaurant provider
- */
-var Eatology = /** @class */ (function (_super) {
-    __extends(Eatology, _super);
-    function Eatology(restaurant) {
+var IDAO_1 = require("./IDAO");
+var TableName = "visits";
+var VisitorsRepository = /** @class */ (function (_super) {
+    __extends(VisitorsRepository, _super);
+    function VisitorsRepository(dao) {
         var _this = _super.call(this) || this;
-        _this.restaurant = restaurant;
+        _this.dao = dao;
         return _this;
     }
-    Eatology.prototype.getDayInfo = function (day) {
+    VisitorsRepository.prototype.createTable = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, {
-                        url: this.restaurant.url,
-                        pages: [day * 2 - 1]
-                    }];
+                return [2 /*return*/, this.dao.run("\n\t\t\tCREATE TABLE IF NOT EXISTS " + TableName + " (\n\t\t\t\tdatetime INTEGER PRIMARY KEY,\n\t\t\t\tcount INTEGER\n\t\t\t)\n\t\t")];
             });
         });
     };
-    Eatology = __decorate([
-        typescript_ioc_1.Provides(IPDFInfoProvider_1["default"]),
-        __metadata("design:paramtypes", [Object])
-    ], Eatology);
-    return Eatology;
-}(IPDFInfoProvider_1["default"]));
-exports["default"] = Eatology;
-//# sourceMappingURL=Eatology.js.map
+    VisitorsRepository.prototype.hit = function (datetime) {
+        return __awaiter(this, void 0, void 0, function () {
+            var affected;
+            return __generator(this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.dao.run("\n\t\t\tUPDATE " + TableName + " SET count = count + 1 WHERE datetime = ?\n\t\t", [datetime])];
+                    case 1:
+                        affected = _a.sent();
+                        if (affected === 0) {
+                            return [2 /*return*/, this.dao.run("\n\t\t\t\tINSERT INTO " + TableName + " (datetime, count) VALUES (?, ?)\n\t\t\t", [datetime, 0])];
+                        }
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    VisitorsRepository.prototype.getVisitors = function (from, to) {
+        return __awaiter(this, void 0, void 0, function () {
+            var query;
+            return __generator(this, function (_a) {
+                query = "\n\t\t\tSELECT * FROM " + TableName + "\n\t\t";
+                if (from != null && to != null) {
+                    query += " WHERE datetime BETWEEN ? and ?";
+                }
+                else if (from != null) {
+                    query += " WHERE datetime = ?";
+                }
+                return [2 /*return*/, this.dao.all(query, [from, to])];
+            });
+        });
+    };
+    VisitorsRepository = __decorate([
+        typescript_ioc_1.Provides(IVisitorsRepository_1["default"]),
+        __param(0, typescript_ioc_1.Inject),
+        __metadata("design:paramtypes", [IDAO_1["default"]])
+    ], VisitorsRepository);
+    return VisitorsRepository;
+}(IVisitorsRepository_1["default"]));
+exports["default"] = VisitorsRepository;
+//# sourceMappingURL=VisitorsRepository.js.map

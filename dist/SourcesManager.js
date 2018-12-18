@@ -21,7 +21,7 @@ var SinglePage_1 = require("./pdfProviders/SinglePage");
 /**
  * Sources manager
  */
-var SourcesManager = (function () {
+var SourcesManager = /** @class */ (function () {
     function SourcesManager() {
         this.sources = [{
                 restaurant: restaurants_1["default"].iqHolandska,

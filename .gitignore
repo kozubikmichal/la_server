@@ -2,3 +2,4 @@ node_modules
 client/
 .nyc_output/
 coverage/
+*.sqlite3

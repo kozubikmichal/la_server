@@ -3,7 +3,7 @@ exports.__esModule = true;
 /**
  * Rebio restaurant menu parser
  */
-var Rebio = (function () {
+var Rebio = /** @class */ (function () {
     function Rebio() {
     }
     /**

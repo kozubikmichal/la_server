@@ -3,7 +3,7 @@ exports.__esModule = true;
 /**
  * Kometa restaurant menu parser
  */
-var Kometa = (function () {
+var Kometa = /** @class */ (function () {
     function Kometa() {
     }
     /**

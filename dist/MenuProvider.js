@@ -22,7 +22,7 @@ var JSDOM = jsdom.JSDOM;
 /**
  * Provides menu for the restaurants
  */
-var MenuProvider = (function () {
+var MenuProvider = /** @class */ (function () {
     function MenuProvider(sourcesManager, request) {
         this.sourcesManager = sourcesManager;
         this.request = request;

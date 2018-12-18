@@ -3,7 +3,7 @@ exports.__esModule = true;
 /**
  * Restaurant provider
  */
-var IPDFInfoProvider = (function () {
+var IPDFInfoProvider = /** @class */ (function () {
     function IPDFInfoProvider() {
     }
     return IPDFInfoProvider;

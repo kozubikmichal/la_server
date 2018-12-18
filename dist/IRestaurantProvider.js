@@ -3,7 +3,7 @@ exports.__esModule = true;
 /**
  * Restaurant provider
  */
-var IRestaurantProvider = (function () {
+var IRestaurantProvider = /** @class */ (function () {
     function IRestaurantProvider() {
     }
     return IRestaurantProvider;
