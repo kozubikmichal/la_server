@@ -38,7 +38,7 @@ export default class SourcesManager implements ISourcesManager {
 		parser: new Tusto()
 	}, {
 		restaurant: restaurants.kometaPubArena,
-		menuUrl: "http://arena.kometapub.cz/tydenni-menu.php",
+		menuUrl: "https://arena.kometapub.cz/tydenni-menu.php",
 		type: MenuType.Standard,
 		parser: new Kometa()
 	}, {
