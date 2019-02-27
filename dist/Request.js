@@ -41,14 +41,9 @@ var Request = /** @class */ (function (_super) {
                 host: Constants_1["default"].ProxyHost,
                 port: Constants_1["default"].ProxyPort
             }
-        })["catch"](function (error) {
+        })["catch"](function () {
             // In case of error try to perform request wihout proxy setting
-            if (error.code === "ENOTFOUND") {
-                return axios_1["default"].get(url);
-            }
-            else {
-                return Promise.reject(error);
-            }
+            return axios_1["default"].get(url);
         }).then(function (response) {
             return response.data;
         });

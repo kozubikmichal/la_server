@@ -24,13 +24,9 @@ export default class Request extends IRequest {
 				host: Constants.ProxyHost,
 				port: Constants.ProxyPort
 			}
-		}).catch(error => {
+		}).catch(() => {
 			// In case of error try to perform request wihout proxy setting
-			if (error.code === "ENOTFOUND") {
-				return axios.get(url);
-			} else {
-				return Promise.reject(error);
-			}
+			return axios.get(url);
 		}).then((response) => {
 			return response.data
 		});
