@@ -7,14 +7,13 @@ import Tusto from "./parsers/Tusto";
 import Rebio from "./parsers/Rebio";
 import MyFood from "./parsers/MyFood";
 import Makalu from "./parsers/Makalu";
-import UTesare from "./parsers/UTesare";
-import UTesareVIP from "./parsers/UTesareVIP";
 import UHovezihoPupku from "./parsers/UHovezihoPupku";
 import Eatology from "./pdfProviders/Eatology";
 
 import restaurants from "./data/restaurants"
 import { MenuType } from "./IMenu";
 import SinglePage from "./pdfProviders/SinglePage";
+import Zomato from "./parsers/Zomato";
 
 /**
  * Sources manager
@@ -61,6 +60,11 @@ export default class SourcesManager implements ISourcesManager {
 		menuUrl: "http://www.utesare.cz/Menu.pdf",
 		type: MenuType.PDF,
 		pdfInfoProvider: new SinglePage(restaurants.uTesare)
+	}, {
+		restaurant: restaurants.buffaloAmericanSteakhouse,
+		menuUrl: "",
+		type: MenuType.Standard,
+		parser: new Zomato("18491544")
 	}]
 
 	/**

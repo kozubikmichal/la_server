@@ -70,5 +70,14 @@ export default {
 			lat: "49.1813984",
 			lng: "16.5971371"
 		}
+	},
+	buffaloAmericanSteakhouse: {
+		id: "buffaloAmericanSteakhouse",
+		name: "Buffalo American Steakhouse",
+		url: "http://www.restauracebuffalo.cz/",
+		position: {
+			lat: "49.18393",
+			lng: "16.579791"
+		}
 	}
 };

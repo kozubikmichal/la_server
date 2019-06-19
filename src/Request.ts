@@ -1,11 +1,9 @@
 import { Provides } from "typescript-ioc"
 import Constants from "./Constants";
-import IRequest from "./IRequest";
+import IRequest, { IRequestConfig } from "./IRequest";
 
 import axios from "axios";
 import * as http from "http";
-import * as fs from "fs";
-import * as stream from "stream";
 
 /**
  * Request wrapper
@@ -16,17 +14,18 @@ export default class Request extends IRequest {
 	 * Sends GET request
 	 *
 	 * @param url url path
+	 * @param params request parameters
 	 */
-	public get(url): Promise<any> {
+	public get(url, config: IRequestConfig = {}): Promise<any> {
 		// Default usage is from corporate network -> use proxy
-		return axios.get(url, {
+		return axios.get(url, Object.assign({
 			proxy: {
 				host: Constants.ProxyHost,
 				port: Constants.ProxyPort
 			}
-		}).catch(() => {
+		}, config)).catch(() => {
 			// In case of error try to perform request wihout proxy setting
-			return axios.get(url);
+			return axios.get(url, config);
 		}).then((response) => {
 			return response.data
 		});

@@ -87,7 +87,8 @@ var MenuProvider = /** @class */ (function () {
         }
     };
     MenuProvider.prototype.parseMenu = function (url, parser, day) {
-        return this.request.get(url).then(function (data) {
+        var dataPromise = url.length > 0 ? this.request.get(url) : Promise.resolve();
+        return dataPromise.then(function (data) {
             var dom = new JSDOM(data);
             return parser.parseDay(dom, day, data);
         });

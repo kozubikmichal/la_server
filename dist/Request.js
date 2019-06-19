@@ -33,17 +33,19 @@ var Request = /** @class */ (function (_super) {
      * Sends GET request
      *
      * @param url url path
+     * @param params request parameters
      */
-    Request.prototype.get = function (url) {
+    Request.prototype.get = function (url, config) {
+        if (config === void 0) { config = {}; }
         // Default usage is from corporate network -> use proxy
-        return axios_1["default"].get(url, {
+        return axios_1["default"].get(url, Object.assign({
             proxy: {
                 host: Constants_1["default"].ProxyHost,
                 port: Constants_1["default"].ProxyPort
             }
-        })["catch"](function () {
+        }, config))["catch"](function () {
             // In case of error try to perform request wihout proxy setting
-            return axios_1["default"].get(url);
+            return axios_1["default"].get(url, config);
         }).then(function (response) {
             return response.data;
         });

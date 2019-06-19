@@ -18,6 +18,7 @@ var Eatology_1 = require("./pdfProviders/Eatology");
 var restaurants_1 = require("./data/restaurants");
 var IMenu_1 = require("./IMenu");
 var SinglePage_1 = require("./pdfProviders/SinglePage");
+var Zomato_1 = require("./parsers/Zomato");
 /**
  * Sources manager
  */
@@ -63,6 +64,11 @@ var SourcesManager = /** @class */ (function () {
                 menuUrl: "http://www.utesare.cz/Menu.pdf",
                 type: IMenu_1.MenuType.PDF,
                 pdfInfoProvider: new SinglePage_1["default"](restaurants_1["default"].uTesare)
+            }, {
+                restaurant: restaurants_1["default"].buffaloAmericanSteakhouse,
+                menuUrl: "",
+                type: IMenu_1.MenuType.Standard,
+                parser: new Zomato_1["default"]("18491544")
             }];
     }
     /**
