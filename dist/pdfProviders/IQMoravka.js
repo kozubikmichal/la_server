@@ -78,7 +78,7 @@ var IQMoravka = /** @class */ (function (_super) {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
                 return [2 /*return*/, {
-                        url: BaseUrl + "/" + DaysMapping[day - 1] + ".pdf"
+                        url: BaseUrl + "/" + encodeURIComponent(DaysMapping[day - 1]) + ".pdf"
                     }];
             });
         });

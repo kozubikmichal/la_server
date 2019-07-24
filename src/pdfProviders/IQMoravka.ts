@@ -23,7 +23,7 @@ export default class IQMoravka extends IPDFInfoProvider {
 
 	public async getDayInfo(day: number): Promise<IPDFInfo> {
 		return {
-			url: `${BaseUrl}/${DaysMapping[day - 1]}.pdf`
+			url: `${BaseUrl}/${encodeURIComponent(DaysMapping[day - 1])}.pdf`
 		} as IPDFInfo;
 	}
 }
