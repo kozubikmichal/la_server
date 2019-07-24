@@ -14,6 +14,7 @@ import restaurants from "./data/restaurants"
 import { MenuType } from "./IMenu";
 import SinglePage from "./pdfProviders/SinglePage";
 import Zomato from "./parsers/Zomato";
+import IQMoravka from "./pdfProviders/IQMoravka";
 
 /**
  * Sources manager
@@ -65,6 +66,11 @@ export default class SourcesManager implements ISourcesManager {
 		menuUrl: "",
 		type: MenuType.Standard,
 		parser: new Zomato("18491544")
+	}, {
+		restaurant: restaurants.iqMoravka,
+		menuUrl: "http://www.iqrestaurant.cz/moravka.html?iframe=true",
+		type: MenuType.PDF,
+		pdfInfoProvider: new IQMoravka(restaurants.iqMoravka)
 	}]
 
 	/**

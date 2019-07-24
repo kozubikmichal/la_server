@@ -10,6 +10,15 @@ exports["default"] = {
             lng: "16.605766"
         }
     },
+    iqMoravka: {
+        id: "iqMoravka",
+        name: "IQ Morávka",
+        url: "http://www.iqrestaurant.cz/moravka.html?iframe=true",
+        position: {
+            lat: "49.1773279",
+            lng: "16.6025084"
+        }
+    },
     myFoodHolandska: {
         id: "myFoodHolandska",
         name: "MyFood Holandská",

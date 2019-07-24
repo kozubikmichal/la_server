@@ -19,6 +19,7 @@ var restaurants_1 = require("./data/restaurants");
 var IMenu_1 = require("./IMenu");
 var SinglePage_1 = require("./pdfProviders/SinglePage");
 var Zomato_1 = require("./parsers/Zomato");
+var IQMoravka_1 = require("./pdfProviders/IQMoravka");
 /**
  * Sources manager
  */
@@ -69,6 +70,11 @@ var SourcesManager = /** @class */ (function () {
                 menuUrl: "",
                 type: IMenu_1.MenuType.Standard,
                 parser: new Zomato_1["default"]("18491544")
+            }, {
+                restaurant: restaurants_1["default"].iqMoravka,
+                menuUrl: "http://www.iqrestaurant.cz/moravka.html?iframe=true",
+                type: IMenu_1.MenuType.PDF,
+                pdfInfoProvider: new IQMoravka_1["default"](restaurants_1["default"].iqMoravka)
             }];
     }
     /**
