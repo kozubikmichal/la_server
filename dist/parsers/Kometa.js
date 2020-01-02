@@ -22,13 +22,18 @@ var Kometa = /** @class */ (function () {
     Kometa.prototype.parseDay = function (dom, day) {
         var divId = "menu-day-" + DAY_IDS[day - 1];
         var dayData = dom.window.document.querySelectorAll("div#" + divId + " tr");
+        var soupData = dom.window.document.querySelectorAll("div#menu-day-ct p").item(1);
+        var soupMeal = soupData && soupData.textContent.startsWith("Polévka:") && {
+            name: soupData.textContent,
+            price: ""
+        };
         return Promise.resolve([{
-                meals: this.processMenuList(dayData)
+                meals: this.processMenuList(dayData, soupMeal)
             }]);
     };
-    Kometa.prototype.processMenuList = function (list) {
-        var meals = [];
-        for (var i = 1; i < list.length; ++i) {
+    Kometa.prototype.processMenuList = function (list, soupMeal) {
+        var meals = soupMeal ? [soupMeal] : [];
+        for (var i = 0; i < list.length; ++i) {
             var row = list.item(i);
             meals.push({
                 name: this.normalizeName(row.children[1].textContent),
