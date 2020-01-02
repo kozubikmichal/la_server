@@ -20,8 +20,8 @@ var MyFood = /** @class */ (function () {
     };
     MyFood.prototype.processMenuList = function (list) {
         var meals = [];
-        var data = list.children[1];
-        for (var i = 0; i < data.children.length; ++i) {
+        var data = list && list.children[1];
+        for (var i = 0; data && data.children && i < data.children.length; ++i) {
             meals.push({
                 name: data.children[i].children[0].textContent,
                 price: this.normalizePrice(data.children[i].children[1].textContent)

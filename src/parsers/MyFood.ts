@@ -25,8 +25,8 @@ export default class MyFood implements IParser {
 
 	private processMenuList(list: Element): IMeal[] {
 		let meals = [];
-		let data = list.children[1];
-		for (let i = 0; i < data.children.length; ++i) {
+		let data = list && list.children[1];
+		for (let i = 0; data && data.children && i < data.children.length; ++i) {
 			meals.push({
 				name: data.children[i].children[0].textContent,
 				price: this.normalizePrice(data.children[i].children[1].textContent)
