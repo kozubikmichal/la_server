@@ -1,5 +1,12 @@
 "use strict";
 exports.__esModule = true;
+var DAY_IDS = [
+    "po",
+    "ut",
+    "st",
+    "ct",
+    "pa",
+];
 /**
  * Kometa restaurant menu parser
  */
@@ -13,7 +20,8 @@ var Kometa = /** @class */ (function () {
      * @param day day number
      */
     Kometa.prototype.parseDay = function (dom, day) {
-        var dayData = dom.window.document.querySelectorAll("div#div" + day + " tr");
+        var divId = "menu-day-" + DAY_IDS[day - 1];
+        var dayData = dom.window.document.querySelectorAll("div#" + divId + " tr");
         return Promise.resolve([{
                 meals: this.processMenuList(dayData)
             }]);
@@ -23,8 +31,8 @@ var Kometa = /** @class */ (function () {
         for (var i = 1; i < list.length; ++i) {
             var row = list.item(i);
             meals.push({
-                name: this.normalizeName(row.children[0].textContent),
-                price: row.children[1].textContent
+                name: this.normalizeName(row.children[1].textContent),
+                price: row.children[2].textContent
             });
         }
         return meals;

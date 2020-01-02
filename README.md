@@ -8,7 +8,7 @@ List of provided restaurant menus:
 * [IQ Holandská (Týdenní nabídka)](http://iqrestaurant.cz/brno/menu.html)
 * [MyFood Holandská](https://www.sklizeno.cz/o-nas/brno-holandska/)
 * [Tusto Titanium](http://titanium.tusto.cz/tydenni-menu/)
-* [Kometa Pub Arena](https://arena.kometapub.cz/tydenni-menu.php)
+* [Kometa Pub Arena](https://www.kometapub.cz/arena.php)
 * [Rebio Holandská](http://www.rebio.cz/Holandska/Nase-nabidka/dW-ei.folder.aspx)
 * [Makalu](http://www.nepalska-restaurace-makalu.cz/index.php)
 * [U Hovězího pupku](http://www.uhovezihopupku.cz/menu/)

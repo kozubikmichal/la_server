@@ -42,7 +42,7 @@ var SourcesManager = /** @class */ (function () {
                 parser: new Tusto_1["default"]()
             }, {
                 restaurant: restaurants_1["default"].kometaPubArena,
-                menuUrl: "https://arena.kometapub.cz/tydenni-menu.php",
+                menuUrl: "https://www.kometapub.cz/arena.php",
                 type: IMenu_1.MenuType.Standard,
                 parser: new Kometa_1["default"]()
             }, {

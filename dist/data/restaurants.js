@@ -40,7 +40,7 @@ exports["default"] = {
     kometaPubArena: {
         id: "kometaPubArena",
         name: "Kometa Pub Arena",
-        url: "https://arena.kometapub.cz/tydenni-menu.php",
+        url: "https://www.kometapub.cz/arena.php",
         position: {
             lat: "49.185013",
             lng: "16.602007"
