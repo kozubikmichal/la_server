@@ -1,10 +1,9 @@
 import IVisitorsRepository from "./IVisitorsRepository";
-import { Inject, Provides } from "typescript-ioc";
+import { Inject } from "typescript-ioc";
 import IDAO from "./IDAO";
 
 const TableName = "visits";
 
-@Provides(IVisitorsRepository)
 export default class VisitorsRepository extends IVisitorsRepository {
 	constructor(
 		@Inject private dao: IDAO

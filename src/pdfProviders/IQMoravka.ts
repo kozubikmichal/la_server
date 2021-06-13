@@ -1,4 +1,3 @@
-import { Provides } from "typescript-ioc"
 import { IRestaurant, IPDFInfo } from "../IMenu"
 
 import IPDFInfoProvider from "./IPDFInfoProvider";
@@ -15,7 +14,6 @@ const DaysMapping = [
 /**
  * Restaurant provider
  */
-@Provides(IPDFInfoProvider)
 export default class IQMoravka extends IPDFInfoProvider {
 	constructor(private restaurant: IRestaurant) {
 		super();

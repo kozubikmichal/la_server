@@ -24,10 +24,8 @@ export default class Configuration {
 		Container.bind(IRestaurantProvider).to(RestaurantProvider);
 		Container.bind(IVisitorsRepository).to(VisitorsRepository);
 
-		Container.bind(IDAO).provider({
-			get: () => {
-				return new AppDAO(process.env.DB_PATH || "./database.sqlite3")
-			}
-		}).scope(Scope.Singleton);
+		Container.bind(IDAO)
+			.factory(() => new AppDAO(process.env.DB_PATH || "./database.sqlite3"))
+			.scope(Scope.Singleton);
 	}
 }

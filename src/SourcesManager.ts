@@ -1,4 +1,3 @@
-import { Provides } from "typescript-ioc"
 import ISource from "./ISource";
 import ISourcesManager from "./ISourcesManager";
 
@@ -19,7 +18,6 @@ import IQMoravka from "./pdfProviders/IQMoravka";
 /**
  * Sources manager
  */
-@Provides(ISourcesManager)
 export default class SourcesManager implements ISourcesManager {
 	private sources: ISource[] = [{
 		restaurant: restaurants.iqHolandska,

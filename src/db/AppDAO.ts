@@ -1,8 +1,6 @@
 import { Database } from "sqlite3";
 import IDAO from "./IDAO";
-import { Provides } from "typescript-ioc";
 
-@Provides(IDAO)
 export default class AppDAO extends IDAO {
 	db: Database
 

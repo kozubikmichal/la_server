@@ -1,4 +1,3 @@
-import { Provides } from "typescript-ioc"
 import Constants from "./Constants";
 import IRequest, { IRequestConfig } from "./IRequest";
 
@@ -8,7 +7,6 @@ import * as http from "http";
 /**
  * Request wrapper
  */
-@Provides(IRequest)
 export default class Request extends IRequest {
 	/**
 	 * Sends GET request

@@ -113,7 +113,6 @@ var VisitorsRepository = /** @class */ (function (_super) {
         });
     };
     VisitorsRepository = __decorate([
-        typescript_ioc_1.Provides(IVisitorsRepository_1["default"]),
         __param(0, typescript_ioc_1.Inject),
         __metadata("design:paramtypes", [IDAO_1["default"]])
     ], VisitorsRepository);

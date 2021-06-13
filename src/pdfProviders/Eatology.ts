@@ -1,4 +1,3 @@
-import { Provides } from "typescript-ioc"
 import { IRestaurant, IPDFInfo } from "../IMenu"
 
 import IPDFInfoProvider from "./IPDFInfoProvider";
@@ -6,7 +5,6 @@ import IPDFInfoProvider from "./IPDFInfoProvider";
 /**
  * Restaurant provider
  */
-@Provides(IPDFInfoProvider)
 export default class Eatology extends IPDFInfoProvider {
 	constructor(private restaurant: IRestaurant) {
 		super();

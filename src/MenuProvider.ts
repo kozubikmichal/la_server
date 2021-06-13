@@ -1,4 +1,4 @@
-import { Inject, Provides } from "typescript-ioc"
+import { Inject } from "typescript-ioc"
 import { IMenuSection, MenuType } from "./IMenu";
 
 import IParser from "./parsers/IParser";
@@ -15,8 +15,6 @@ const { JSDOM } = jsdom;
 /**
  * Provides menu for the restaurants
  */
-@Provides(IMenuProvider)
-
 export default class MenuProvider implements IMenuProvider {
 	constructor(
 		@Inject private sourcesManager?: ISourcesManager,

@@ -14,7 +14,6 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 exports.__esModule = true;
 var typescript_ioc_1 = require("typescript-ioc");
 var IMenu_1 = require("./IMenu");
-var IMenuProvider_1 = require("./IMenuProvider");
 var ISourcesManager_1 = require("./ISourcesManager");
 var IRequest_1 = require("./IRequest");
 var jsdom = require("jsdom");
@@ -100,7 +99,6 @@ var MenuProvider = /** @class */ (function () {
         return new Date().getDay();
     };
     MenuProvider = __decorate([
-        typescript_ioc_1.Provides(IMenuProvider_1["default"]),
         __param(0, typescript_ioc_1.Inject),
         __param(1, typescript_ioc_1.Inject),
         __metadata("design:paramtypes", [ISourcesManager_1["default"],
