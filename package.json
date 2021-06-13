@@ -14,7 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "apicache": "^0.8.7",
-    "axios": "^0.16.2",
+    "axios": "^0.21.1",
     "express": "^4.15.3",
     "jsdom": "^11.1.0",
     "pdf2json": "^1.1.7",
