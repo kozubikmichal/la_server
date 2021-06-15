@@ -17,8 +17,6 @@
     "axios": "^0.21.1",
     "express": "^4.15.3",
     "jsdom": "^11.1.0",
-    "pdf2json": "^1.1.7",
-    "pdfreader": "^1.0.10",
     "sqlite3": "^4.0.4",
     "typescript-ioc": "^3.2.2"
   },

@@ -1,4 +1,6 @@
+import { Inject } from "typescript-ioc";
 import { IRestaurant, IPDFInfo } from "../IMenu"
+import IRequest from "../IRequest";
 
 import IPDFInfoProvider from "./IPDFInfoProvider";
 
@@ -15,14 +17,22 @@ const DaysMapping = [
  * Restaurant provider
  */
 export default class IQMoravka extends IPDFInfoProvider {
+	@Inject
+	private request: IRequest;
+
 	constructor(private restaurant: IRestaurant) {
 		super();
 	}
 
 	public async getDayInfo(day: number): Promise<IPDFInfo> {
+		const url = `${BaseUrl}/${encodeURIComponent(DaysMapping[day - 1])}.pdf`;
+
 		return {
-			url: `${BaseUrl}/${encodeURIComponent(DaysMapping[day - 1])}.pdf`,
-			pages: [1]
+			url: url,
+			pages: [1],
+			content: await this.request.get(url, {
+				responseType: "arraybuffer"
+			})
 		};
 	}
 }

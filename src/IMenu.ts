@@ -36,7 +36,8 @@ export enum MenuType {
 
 export interface IPDFInfo {
 	url: string;
-	pages: number[]
+	pages: number[],
+	content?: Buffer
 }
 
 /**
