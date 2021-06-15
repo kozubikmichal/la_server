@@ -1,7 +1,7 @@
 import Constants from "./Constants";
-import IRequest, { IRequestConfig } from "./IRequest";
+import IRequest from "./IRequest";
 
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import * as http from "http";
 
 /**
@@ -14,7 +14,7 @@ export default class Request extends IRequest {
 	 * @param url url path
 	 * @param params request parameters
 	 */
-	public get(url, config: IRequestConfig = {}): Promise<any> {
+	public get(url, config: AxiosRequestConfig = {}): Promise<any> {
 		// Default usage is from corporate network -> use proxy
 		return axios.get(url, Object.assign({
 			proxy: {

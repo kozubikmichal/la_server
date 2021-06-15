@@ -1,11 +1,4 @@
-export interface IRequestConfig {
-	params?: {
-		[key: string]: string
-	},
-	headers?: {
-		[key: string]: string
-	}
-}
+import { AxiosRequestConfig } from "axios";
 
 /**
  * Request wrapper
@@ -17,7 +10,7 @@ export default abstract class IRequest {
 	 * @param url url path
 	 * @param params request parameters
 	 */
-	abstract get(url, config?: IRequestConfig): Promise<any>
+	abstract get(url, config?: AxiosRequestConfig): Promise<any>
 
 	abstract download(url): Promise<Buffer>
 }
