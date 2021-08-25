@@ -4,7 +4,6 @@ var Kometa_1 = require("./parsers/Kometa");
 var Tusto_1 = require("./parsers/Tusto");
 var Rebio_1 = require("./parsers/Rebio");
 var MyFood_1 = require("./parsers/MyFood");
-var Makalu_1 = require("./parsers/Makalu");
 var UHovezihoPupku_1 = require("./parsers/UHovezihoPupku");
 var Eatology_1 = require("./pdfProviders/Eatology");
 var restaurants_1 = require("./data/restaurants");
@@ -42,11 +41,6 @@ var SourcesManager = /** @class */ (function () {
                 menuUrl: "http://www.rebio.cz/Holandska/Nase-nabidka/dW-ei.folder.aspx",
                 type: IMenu_1.MenuType.Standard,
                 parser: new Rebio_1["default"]()
-            }, {
-                restaurant: restaurants_1["default"].makaluBrno,
-                menuUrl: "http://www.nepalska-restaurace-makalu.cz/index.php",
-                type: IMenu_1.MenuType.Standard,
-                parser: new Makalu_1["default"]()
             }, {
                 restaurant: restaurants_1["default"].uHovezihoPupku,
                 menuUrl: "http://www.uhovezihopupku.cz/menu/",

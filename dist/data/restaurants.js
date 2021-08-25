@@ -55,15 +55,6 @@ exports["default"] = {
             lng: "16.604408"
         }
     },
-    makaluBrno: {
-        id: "makaluBrno",
-        name: "Makalu",
-        url: "http://www.nepalska-restaurace-makalu.cz/index.php",
-        position: {
-            lat: "49.185039",
-            lng: "16.595065"
-        }
-    },
     uHovezihoPupku: {
         id: "uHovezihoPupku",
         name: "U Hovězího pupku",

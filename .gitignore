@@ -3,3 +3,4 @@ client/
 .nyc_output/
 coverage/
 *.sqlite3
+.DS_Store

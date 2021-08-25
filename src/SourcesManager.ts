@@ -5,7 +5,6 @@ import Kometa from "./parsers/Kometa";
 import Tusto from "./parsers/Tusto";
 import Rebio from "./parsers/Rebio";
 import MyFood from "./parsers/MyFood";
-import Makalu from "./parsers/Makalu";
 import UHovezihoPupku from "./parsers/UHovezihoPupku";
 import Eatology from "./pdfProviders/Eatology";
 
@@ -44,11 +43,6 @@ export default class SourcesManager implements ISourcesManager {
 		menuUrl: "http://www.rebio.cz/Holandska/Nase-nabidka/dW-ei.folder.aspx",
 		type: MenuType.Standard,
 		parser: new Rebio()
-	}, {
-		restaurant: restaurants.makaluBrno,
-		menuUrl: "http://www.nepalska-restaurace-makalu.cz/index.php",
-		type: MenuType.Standard,
-		parser: new Makalu()
 	}, {
 		restaurant: restaurants.uHovezihoPupku,
 		menuUrl: "http://www.uhovezihopupku.cz/menu/",
