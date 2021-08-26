@@ -55,6 +55,7 @@ var express = require("express");
 var apicache = require("apicache");
 var path = require("path");
 var IVisitorsRepository_1 = require("./db/IVisitorsRepository");
+var FeedbackCollector_1 = require("./feedback/FeedbackCollector");
 var CACHE_DURATION = "30 minutes";
 var API_ROOT = "/api";
 var ROUTES = {
@@ -62,22 +63,26 @@ var ROUTES = {
     singleMenu: "/menu/:id",
     restaurant: "/restaurant",
     clearCache: "/clearCache",
-    visitors: "/stats/visitors"
+    visitors: "/stats/visitors",
+    feedback: "/feedback"
 };
 /**
  * Server
  */
 var Server = /** @class */ (function () {
-    function Server(menuProvider, restaurantProvider, visitorsRepository) {
+    function Server(menuProvider, restaurantProvider, visitorsRepository, feedbackCollector) {
         this.menuProvider = menuProvider;
         this.restaurantProvider = restaurantProvider;
         this.visitorsRepository = visitorsRepository;
+        this.feedbackCollector = feedbackCollector;
         this.app = express();
         this.router = express.Router();
+        this.useMiddleware();
         this.useCache();
         this.useRouter();
         this.registerClient();
         this.registerRoutes();
+        this.feedbackCollector.register(this.app);
         this.visitorsRepository.createTable();
     }
     /**
@@ -141,13 +146,19 @@ var Server = /** @class */ (function () {
             res.sendFile(file);
         });
     };
+    Server.prototype.useMiddleware = function () {
+        this.app.use(express.json());
+        this.app.use(express.urlencoded({ extended: true }));
+    };
     Server = __decorate([
         __param(0, typescript_ioc_1.Inject),
         __param(1, typescript_ioc_1.Inject),
         __param(2, typescript_ioc_1.Inject),
+        __param(3, typescript_ioc_1.Inject),
         __metadata("design:paramtypes", [IMenuProvider_1["default"],
             IRestaurantProvider_1["default"],
-            IVisitorsRepository_1["default"]])
+            IVisitorsRepository_1["default"],
+            FeedbackCollector_1["default"]])
     ], Server);
     return Server;
 }());

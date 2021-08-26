@@ -14,7 +14,7 @@ export default class VisitorsRepository extends IVisitorsRepository {
 			CREATE TABLE IF NOT EXISTS ${TableName} (
 				datetime INTEGER PRIMARY KEY,
 				count INTEGER
-			)
+			);
 		`);
 	}
 

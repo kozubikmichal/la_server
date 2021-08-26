@@ -7,6 +7,7 @@ import * as express from "express";
 import * as apicache from "apicache";
 import * as path from "path";
 import IVisitorsRepository from "./db/IVisitorsRepository";
+import FeedbackCollector from "./feedback/FeedbackCollector";
 
 const CACHE_DURATION = "30 minutes"
 const API_ROOT = "/api"
@@ -15,7 +16,8 @@ const ROUTES = {
 	singleMenu: "/menu/:id",
 	restaurant: "/restaurant",
 	clearCache: "/clearCache",
-	visitors: "/stats/visitors"
+	visitors: "/stats/visitors",
+	feedback: "/feedback"
 }
 
 /**
@@ -28,12 +30,15 @@ export default class Server {
 	constructor(
 		@Inject private menuProvider: IMenuProvider,
 		@Inject private restaurantProvider: IRestaurantProvider,
-		@Inject private visitorsRepository: IVisitorsRepository
+		@Inject private visitorsRepository: IVisitorsRepository,
+		@Inject private feedbackCollector: FeedbackCollector
 	) {
+		this.useMiddleware();
 		this.useCache();
 		this.useRouter();
 		this.registerClient();
 		this.registerRoutes();
+		this.feedbackCollector.register(this.app);
 		this.visitorsRepository.createTable();
 	}
 
@@ -91,5 +96,10 @@ export default class Server {
 			this.visitorsRepository.hit(new Date().setMinutes(0, 0, 0));
 			res.sendFile(file)
 		})
+	}
+
+	private useMiddleware() {
+		this.app.use(express.json());
+		this.app.use(express.urlencoded({ extended: true }));
 	}
 }

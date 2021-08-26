@@ -13,6 +13,7 @@ var IVisitorsRepository_1 = require("./db/IVisitorsRepository");
 var VisitorsRepository_1 = require("./db/VisitorsRepository");
 var IDAO_1 = require("./db/IDAO");
 var AppDAO_1 = require("./db/AppDAO");
+var FeedbackCollector_1 = require("./feedback/FeedbackCollector");
 var Configuration = /** @class */ (function () {
     function Configuration() {
     }
@@ -22,6 +23,7 @@ var Configuration = /** @class */ (function () {
         typescript_ioc_1.Container.bind(IRequest_1["default"]).to(Request_1["default"]);
         typescript_ioc_1.Container.bind(IRestaurantProvider_1["default"]).to(RestaurantProvider_1["default"]);
         typescript_ioc_1.Container.bind(IVisitorsRepository_1["default"]).to(VisitorsRepository_1["default"]);
+        typescript_ioc_1.Container.bind(FeedbackCollector_1["default"]).to(FeedbackCollector_1["default"]);
         typescript_ioc_1.Container.bind(IDAO_1["default"])
             .factory(function () { return new AppDAO_1["default"](process.env.DB_PATH || "./database.sqlite3"); })
             .scope(typescript_ioc_1.Scope.Singleton);

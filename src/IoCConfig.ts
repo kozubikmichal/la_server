@@ -15,6 +15,7 @@ import IVisitorsRepository from "./db/IVisitorsRepository";
 import VisitorsRepository from "./db/VisitorsRepository";
 import IDAO from "./db/IDAO";
 import AppDAO from "./db/AppDAO";
+import FeedbackCollector from "./feedback/FeedbackCollector";
 
 export default class Configuration {
 	static configure() {
@@ -23,6 +24,7 @@ export default class Configuration {
 		Container.bind(IRequest).to(Request);
 		Container.bind(IRestaurantProvider).to(RestaurantProvider);
 		Container.bind(IVisitorsRepository).to(VisitorsRepository);
+		Container.bind(FeedbackCollector).to(FeedbackCollector);
 
 		Container.bind(IDAO)
 			.factory(() => new AppDAO(process.env.DB_PATH || "./database.sqlite3"))

@@ -1,19 +1,4 @@
 "use strict";
-var __extends = (this && this.__extends) || (function () {
-    var extendStatics = function (d, b) {
-        extendStatics = Object.setPrototypeOf ||
-            ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
-            function (d, b) { for (var p in b) if (Object.prototype.hasOwnProperty.call(b, p)) d[p] = b[p]; };
-        return extendStatics(d, b);
-    };
-    return function (d, b) {
-        if (typeof b !== "function" && b !== null)
-            throw new TypeError("Class extends value " + String(b) + " is not a constructor or null");
-        extendStatics(d, b);
-        function __() { this.constructor = d; }
-        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
-    };
-})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -63,60 +48,54 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 exports.__esModule = true;
-var IVisitorsRepository_1 = require("./IVisitorsRepository");
 var typescript_ioc_1 = require("typescript-ioc");
 var IDAO_1 = require("./IDAO");
-var TableName = "visits";
-var VisitorsRepository = /** @class */ (function (_super) {
-    __extends(VisitorsRepository, _super);
-    function VisitorsRepository(dao) {
-        var _this = _super.call(this) || this;
-        _this.dao = dao;
-        return _this;
+var TableName = "feedback";
+var FeedbackRepository = /** @class */ (function () {
+    function FeedbackRepository(dao) {
+        this.dao = dao;
     }
-    VisitorsRepository.prototype.createTable = function () {
+    FeedbackRepository.prototype.createTable = function () {
         return __awaiter(this, void 0, void 0, function () {
             return __generator(this, function (_a) {
-                return [2 /*return*/, this.dao.run("\n\t\t\tCREATE TABLE IF NOT EXISTS " + TableName + " (\n\t\t\t\tdatetime INTEGER PRIMARY KEY,\n\t\t\t\tcount INTEGER\n\t\t\t);\n\t\t")];
+                return [2 /*return*/, this.dao.run("\n\t\t\tCREATE TABLE IF NOT EXISTS " + TableName + " (\n\t\t\t\tId INTEGER PRIMARY KEY AUTOINCREMENT,\n\t\t\t\tName varchar(255),\n\t\t\t\tRestaurantName varchar(255),\n\t\t\t\tRestaurantUrl varchar(255),\n\t\t\t\tNote varchar(255),\n\t\t\t\tTimestamp datetime\n\t\t\t);\n\t\t")];
             });
         });
     };
-    VisitorsRepository.prototype.hit = function (datetime) {
+    FeedbackRepository.prototype.commit = function (feedback) {
         return __awaiter(this, void 0, void 0, function () {
-            var affected;
             return __generator(this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.dao.run("\n\t\t\tUPDATE " + TableName + " SET count = count + 1 WHERE datetime = ?\n\t\t", [datetime])];
-                    case 1:
-                        affected = _a.sent();
-                        if (affected === 0) {
-                            return [2 /*return*/, this.dao.run("\n\t\t\t\tINSERT INTO " + TableName + " (datetime, count) VALUES (?, ?)\n\t\t\t", [datetime, 1])];
-                        }
-                        return [2 /*return*/];
-                }
+                this.dao.run("\n\t\t\tINSERT INTO " + TableName + " (Name, RestaurantName, RestaurantUrl, Note, Timestamp) VALUES (?, ?, ?, ?, ?)\n\t\t", [
+                    feedback.Name || "",
+                    feedback.RestaurantName || "",
+                    feedback.RestaurantUrl || "",
+                    feedback.Note || "",
+                    new Date().getTime()
+                ]);
+                return [2 /*return*/];
             });
         });
     };
-    VisitorsRepository.prototype.getVisitors = function (from, to) {
+    FeedbackRepository.prototype.getAll = function (from, to) {
         return __awaiter(this, void 0, void 0, function () {
             var query;
             return __generator(this, function (_a) {
                 query = "\n\t\t\tSELECT * FROM " + TableName + "\n\t\t";
                 if (from != null && to != null) {
-                    query += " WHERE datetime BETWEEN ? and ?";
+                    query += " WHERE Timestamp BETWEEN ? and ?";
                 }
                 else if (from != null) {
-                    query += " WHERE datetime = ?";
+                    query += " WHERE Timestamp = ?";
                 }
                 return [2 /*return*/, this.dao.all(query, [from, to])];
             });
         });
     };
-    VisitorsRepository = __decorate([
+    FeedbackRepository = __decorate([
         __param(0, typescript_ioc_1.Inject),
         __metadata("design:paramtypes", [IDAO_1["default"]])
-    ], VisitorsRepository);
-    return VisitorsRepository;
-}(IVisitorsRepository_1["default"]));
-exports["default"] = VisitorsRepository;
-//# sourceMappingURL=VisitorsRepository.js.map
+    ], FeedbackRepository);
+    return FeedbackRepository;
+}());
+exports["default"] = FeedbackRepository;
+//# sourceMappingURL=FeedbackRepository.js.map
