@@ -12,42 +12,38 @@ var Tusto = /** @class */ (function () {
      * @param dom dom parser
      */
     Tusto.prototype.parseDay = function (dom) {
-        var index = this.getDayIndex(dom);
-        var menu = dom.window.document.querySelectorAll("table.menu").item(index);
-        var dayData = menu.children.item(0);
+        var sections = dom.window.document.querySelectorAll(".weekly-list");
         return Promise.resolve([{
-                meals: this.processMenuList(dayData)
+                name: "Denní menu",
+                meals: this.processSoupList(dom)
+                    .concat(this.processMenuList(sections.item(0)))
+            }, {
+                name: "Týdenní menu",
+                meals: this.processMenuList(sections.item(1))
             }]);
     };
-    Tusto.prototype.getDayIndex = function (dom) {
-        var now = new Date();
-        var regex = new RegExp("\\s" + now.getDate() + "." + (now.getMonth() + 1) + ".");
-        var dates = dom.window.document.querySelectorAll("table.menu > tbody > tr:first-child > td:first-child");
-        var dayIndex = 0;
-        for (var i = 0; i < dates.length; ++i) {
-            if (dates.item(i).textContent.search(regex) > -1) {
-                dayIndex = i;
-                break;
-            }
-        }
-        return dayIndex;
-    };
-    Tusto.prototype.processMenuList = function (list) {
+    Tusto.prototype.processSoupList = function (dom) {
         var meals = [];
-        for (var i = 1; i < list.children.length; ++i) {
-            var row = list.children[i];
+        var soups = dom.window.document.querySelectorAll(".soap .soap-list li");
+        console.log(soups);
+        soups.forEach(function (soup) {
             meals.push({
-                name: this.normalizeName(row.children[0].textContent),
-                price: this.normalizePrice(row.children[2].textContent)
+                name: soup.children[0].childNodes[0].textContent,
+                price: soup.children[1].textContent
             });
-        }
+        });
         return meals;
     };
-    Tusto.prototype.normalizeName = function (name) {
-        return name.replace(/^\d+\)\s*/, "").trim();
-    };
-    Tusto.prototype.normalizePrice = function (price) {
-        return price.replace("Kč", "").trim();
+    Tusto.prototype.processMenuList = function (menuSection) {
+        var meals = [];
+        var items = menuSection.querySelectorAll("li");
+        items.forEach(function (item) {
+            meals.push({
+                name: item.children[1].childNodes[0].textContent,
+                price: item.children[2].textContent
+            });
+        });
+        return meals;
     };
     return Tusto;
 }());

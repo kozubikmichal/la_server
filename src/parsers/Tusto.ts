@@ -1,5 +1,5 @@
 import IParser from "./IParser";
-import { IMeal } from "../IMenu";
+import { IMeal, IMenuSection } from "../IMenu";
 
 import * as jsdom from "jsdom";
 
@@ -12,49 +12,47 @@ export default class Tusto implements IParser {
 	 *
 	 * @param dom dom parser
 	 */
-	public parseDay(dom: jsdom.JSDOM) {
-		let index = this.getDayIndex(dom);
-		let menu = dom.window.document.querySelectorAll(`table.menu`).item(index);
-		let dayData = menu.children.item(0);
+	public parseDay(dom: jsdom.JSDOM): Promise<IMenuSection[]> {
+		const sections = dom.window.document.querySelectorAll(".weekly-list");
 
 		return Promise.resolve([{
-			meals: this.processMenuList(dayData)
+			name: "Denní menu",
+			meals: this.processSoupList(dom)
+				.concat(
+					this.processMenuList(sections.item(0))
+				)
+		}, {
+			name: "Týdenní menu",
+			meals: this.processMenuList(sections.item(1))
 		}]);
 	}
 
-	private getDayIndex(dom: jsdom.JSDOM): number {
-		let now = new Date();
-		let regex = new RegExp(`\\s${now.getDate()}\.${now.getMonth() + 1}\.`);
-		let dates = dom.window.document.querySelectorAll("table.menu > tbody > tr:first-child > td:first-child");
-		let dayIndex = 0;
+	private processSoupList(dom: jsdom.JSDOM): IMeal[] {
+		const meals = [];
+		const soups = dom.window.document.querySelectorAll(".soap .soap-list li");
+		console.log(soups);
 
-		for (let i = 0; i < dates.length; ++i) {
-			if (dates.item(i).textContent.search(regex) > -1) {
-				dayIndex = i;
-				break;
-			}
-		}
-
-		return dayIndex;
-	}
-
-	private processMenuList(list: Element): IMeal[] {
-		let meals = [];
-		for (let i = 1; i < list.children.length; ++i) {
-			let row = list.children[i];
+		soups.forEach((soup) => {
 			meals.push({
-				name: this.normalizeName(row.children[0].textContent),
-				price: this.normalizePrice(row.children[2].textContent)
-			});
-		}
+				name: soup.children[0].childNodes[0].textContent,
+				price: soup.children[1].textContent
+			} as IMeal)
+		})
+
 		return meals;
 	}
 
-	private normalizeName(name: string): string {
-		return name.replace(/^\d+\)\s*/, "").trim();
-	}
+	private processMenuList(menuSection: Element): IMeal[] {
+		const meals = [];
+		const items = menuSection.querySelectorAll("li");
 
-	private normalizePrice(price: string): string {
-		return price.replace("Kč", "").trim()
+		items.forEach((item) => {
+			meals.push({
+				name: item.children[1].childNodes[0].textContent,
+				price: item.children[2].textContent
+			} as IMeal);
+		})
+
+		return meals;
 	}
 }
