@@ -65,7 +65,7 @@ export default {
 	uTesare: {
 		id: "uTesare",
 		name: "Hostinec u Tesaře",
-		url: "http://www.utesare.cz/Menu.pdf",
+		url: "http://www.utesare.cz/poledni-nabidka/",
 		position: {
 			lat: "49.1813984",
 			lng: "16.5971371"

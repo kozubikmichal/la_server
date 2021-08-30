@@ -8,9 +8,9 @@ var UHovezihoPupku_1 = require("./parsers/UHovezihoPupku");
 var Eatology_1 = require("./pdfProviders/Eatology");
 var restaurants_1 = require("./data/restaurants");
 var IMenu_1 = require("./IMenu");
-var SinglePage_1 = require("./pdfProviders/SinglePage");
 var Zomato_1 = require("./parsers/Zomato");
 var IQMoravka_1 = require("./pdfProviders/IQMoravka");
+var UTesare_1 = require("./parsers/UTesare");
 /**
  * Sources manager
  */
@@ -48,9 +48,9 @@ var SourcesManager = /** @class */ (function () {
                 parser: new UHovezihoPupku_1["default"]()
             }, {
                 restaurant: restaurants_1["default"].uTesare,
-                menuUrl: "http://www.utesare.cz/Menu.pdf",
-                type: IMenu_1.MenuType.PDF,
-                pdfInfoProvider: new SinglePage_1["default"](restaurants_1["default"].uTesare)
+                menuUrl: "http://www.utesare.cz/poledni-nabidka/",
+                type: IMenu_1.MenuType.Standard,
+                parser: new UTesare_1["default"]()
             }, {
                 restaurant: restaurants_1["default"].buffaloAmericanSteakhouse,
                 menuUrl: "",

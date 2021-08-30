@@ -13,6 +13,7 @@ import { MenuType } from "./IMenu";
 import SinglePage from "./pdfProviders/SinglePage";
 import Zomato from "./parsers/Zomato";
 import IQMoravka from "./pdfProviders/IQMoravka";
+import UTesare from "./parsers/UTesare";
 
 /**
  * Sources manager
@@ -50,9 +51,9 @@ export default class SourcesManager implements ISourcesManager {
 		parser: new UHovezihoPupku()
 	}, {
 		restaurant: restaurants.uTesare,
-		menuUrl: "http://www.utesare.cz/Menu.pdf",
-		type: MenuType.PDF,
-		pdfInfoProvider: new SinglePage(restaurants.uTesare)
+		menuUrl: "http://www.utesare.cz/poledni-nabidka/",
+		type: MenuType.Standard,
+		parser: new UTesare()
 	}, {
 		restaurant: restaurants.buffaloAmericanSteakhouse,
 		menuUrl: "",
