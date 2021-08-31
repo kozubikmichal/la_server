@@ -30,7 +30,6 @@ export default class Tusto implements IParser {
 	private processSoupList(dom: jsdom.JSDOM): IMeal[] {
 		const meals = [];
 		const soups = dom.window.document.querySelectorAll(".soap .soap-list li");
-		console.log(soups);
 
 		soups.forEach((soup) => {
 			meals.push({

@@ -25,7 +25,6 @@ var Tusto = /** @class */ (function () {
     Tusto.prototype.processSoupList = function (dom) {
         var meals = [];
         var soups = dom.window.document.querySelectorAll(".soap .soap-list li");
-        console.log(soups);
         soups.forEach(function (soup) {
             meals.push({
                 name: soup.children[0].childNodes[0].textContent,
